@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { routes } from "../Router";
+import {bindActionCreators} from "redux";
+import * as todoAction from "../../actions/userPage";
 
 const FormLogin = [
     {
@@ -39,6 +41,7 @@ handleOnChangeForm = event => {
 }
 handleOnSubmit = event => {
     event.preventDefault()
+    this.props.login(this.state.email, this.state.password)
 
 }
 
@@ -72,5 +75,7 @@ render () {
 }
 
 }
+const mapDispatchToProps = (dispatch) =>
+bindActionCreators(todoAction,dispatch)
 
-export default connect()(LoginPage)
+export default connect(null, mapDispatchToProps)(LoginPage)
