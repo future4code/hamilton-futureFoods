@@ -3,9 +3,9 @@ import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route } from "react-router-dom";
 import FeedPage from "../Home/Feed";
 
-const routes = {
+export const routes = {
   root: "/",
-  feedpage: "/feed",
+  feedpage: "/", //MUDAR ISSO, NÃO PODE FICAR ASSIM
 };
 
 function Router(props) {
@@ -14,7 +14,7 @@ function Router(props) {
       <Switch>
         {/* <Route path={routes.root} component={() => <div />} /> */}
         <Route path={routes.feedpage} component={FeedPage} />
-        
+
       </Switch>
     </ConnectedRouter>
   );

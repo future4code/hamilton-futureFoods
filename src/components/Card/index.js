@@ -9,36 +9,44 @@ import Hamburguer from '../../Assets/hamburguer.jpg';
 
 
 
-export default function ImgMediaCard() {
-    const useStyles = makeStyles({
-        root: {
-          maxWidth: 345,
-        },
-      });
-    const classes = useStyles();
+class ImgMediaCard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            
+        }
+    }
+        
+    render(){        
 
-  return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Hamburguer"
-          height="140"
-          image={Hamburguer}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Vinil Butantã
-          </Typography>
+        return (            
+            <Card >
+                <CardActionArea>
+                    <CardMedia
+                    component="img"
+                    alt="Hamburguer"
+                    height="140"
+                    image={Hamburguer}
+                    />
+                    <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        Vinil Butantã
+                    </Typography>
 
-          <Typography variant="body2" color="textSecondary" component="p">
-            60 - 50 min 
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Frete grátis  
-          </Typography>
-        </CardContent>
-      </CardActionArea>      
-    </Card>
-  );
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        60 - 50 min 
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Frete grátis  
+                    </Typography>
+                    </CardContent>
+                </CardActionArea>      
+            </Card>
+        );
+    }
 }
+
+
+export default ImgMediaCard
+
+
