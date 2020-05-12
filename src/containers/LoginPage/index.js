@@ -41,7 +41,7 @@ handleOnChangeForm = event => {
 }
 handleOnSubmit = event => {
     event.preventDefault()
-    this.props.login(this.state.email, this.state.password)
+    this.props.login(this.state.form.email, this.state.form.password)
 
 }
 
