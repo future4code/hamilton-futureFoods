@@ -63,7 +63,7 @@ class SignUpPage extends Component {
         }
     }
 handleOnChangeForm = event => {
-    const { name, value } = event.targe;
+    const { name, value } = event.target;
     this.setState({form: {...this.state.form, [name]:value}})
 }
 handleOnSubmit = event => {
