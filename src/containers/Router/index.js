@@ -13,8 +13,8 @@ function Router(props) {
   return (
     <ConnectedRouter history={props.history}>
       <Switch>
-        <Route path={routes.root} component={LoginPage} />
-        <Route path={routes.signup} component={SignUpPage} />
+        <Route exact path={routes.root} component={LoginPage} />
+        <Route exact path={routes.signup} component={SignUpPage} />
       </Switch>
     </ConnectedRouter>
   );

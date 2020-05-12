@@ -22,8 +22,8 @@
   },
   "devDependencies": {
     "enzyme-adapter-react-16": "^1.15.1",
-    "jest": "^24.9.0",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3",
+    "jest": "24.7.1"
   },
   "scripts": {
     "start": "react-scripts start",

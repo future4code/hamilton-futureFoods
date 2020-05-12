@@ -1,13 +1,44 @@
-import React, {Component, Fragment} from "react"
+import React, {Component} from "react"
 import { connect } from"react-redux"
+import {bindActionCreators} from "redux";
+import * as todoAction from "../../actions/userPage";
 import { routes } from "../Router";
+import styled from "styled-components"
+import TextField from '@material-ui/core/TextField';
+// import Logo from "../style/logo-future.png";
+
+const Input =  styled(TextField)`
+  width: 328px;
+  /* height:56px; */
+  border-radius: 2px;
+  margin: 8px 16px;
+  gap: 8px;
+`
+const Div = styled.div`
+/* width: 360px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+height: 640px; */
+margin-bottom:50px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start; 
+`
+const Button = styled.button`
+width: 328px;
+height: 42px;
+border-radius: 2px;
+background-color:#e8222e;
+`
 
 const FormSignUp = [
     {
-        name:"nome",
+        name:"name",
         type:"text",
         placeholder:"Nome e sobrenome",
-        label:"Nome*",
+        label:"Nome",
         required:true,
         title: "Campo obrigatório",
         pattern:"[A-Za-z ãéÁáêõÕÊíÍçÇÚúüÜ]{3,}"
@@ -27,7 +58,7 @@ const FormSignUp = [
         name:"email",
         type:"email",
         placeholder:"email@email.com",
-        label:"E-mail*",
+        label:"E-mail",
         required:true,
         title: "Campo obrigatório",
         pattern:"[a-z0-9_.+-%]+@[a-z0-9.-]+\.[a-z]{3,}$" 
@@ -36,17 +67,17 @@ const FormSignUp = [
         name:"password",
         type:"password",
         placeholder:"Mínimo 6 caracteres",
-        label:"Senha*",
+        label:"Senha",
         title:"Digite no mínimo 6 caracteres",
         required:true,
         pattern:"[A-Za-z0-9]{6,10}",
         
     },
     {
-        name:"password",
+        name:"confirmPassword",
         type:"password",
         placeholder:"Confirme a senha anterior",
-        label:"Senha*",
+        label:"Senha",
         title:"Digite no mínimo 6 caracteres",
         required:true,
         pattern:"[A-Za-z0-9]{6,10}",
@@ -56,28 +87,38 @@ const FormSignUp = [
 class SignUpPage extends Component {
     constructor(props){
         super(props)
-
         this.state = {
             form: {}
 
         }
     }
 handleOnChangeForm = event => {
-    const { name, value } = event.targe;
+    const { name, value } = event.target;
     this.setState({form: {...this.state.form, [name]:value}})
 }
 handleOnSubmit = event => {
     event.preventDefault()
+    const {form} = this.state
+
+    if(form.password !== form.confirmPassword){
+        alert("Senhas divergentes. Tente novamente")
+        
+    }else{
+        this.props.singUp(form.name, form.email, form.password, form.cpf)
+    }
 }
-    render () {
-        return (
-           <Fragment>
-           <form onSubmit={this.handleOnSubmit}>
+
+render() {
+    return(
+        <Div>
+
+            {/* <img src={Logo}/> */}
+                
+<form onSubmit={this.handleOnSubmit}>
                {FormSignUp.map(info => {
                    return (
                        <div key={info.name}>
-                       <label htmlFor={info.name}>{info.name}</label>
-                           <input
+                           <Input
                                name={info.name}
                                placeholder={info.placeholder}
                                type={info.type}
@@ -86,16 +127,23 @@ handleOnSubmit = event => {
                                onChange={this.handleOnChangeForm}
                                pattern={info.pattern}
                                title={info.title}
-       
-                           />
-       
+                                label={info.label}
+                                variant="outlined" 
+                                InputLabelProps = {{shrink:true}} 
+                                />
                        </div>)
                })}
-               <button type="submit">Entrar</button>
+               <Button type="submit">Entrar</Button>
            </form>
-           </Fragment> 
+        </Div>
         )
-       
     }       
 }
-export default connect(null,null)(SignUpPage)
+
+
+const mapDispatchToProps = (dispatch) =>
+bindActionCreators(todoAction,dispatch)
+
+
+
+export default connect(null,mapDispatchToProps)(SignUpPage)
