@@ -7,10 +7,7 @@ import styled from "styled-components";
 import  ImgMediaCard  from "../../../components/Card";
 
 //MATERIAL-UI SEARCH
-import { fade, makeStyles } from '@material-ui/core/styles';
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
-
+import SearchBar from 'material-ui-search-bar'
 
 
 
@@ -32,83 +29,22 @@ class FeedPage extends Component {
 
 
     render() {
-        // const useStyles = makeStyles((theme) => ({
-        //     search: {
-        //       position: 'relative',
-        //       borderRadius: theme.shape.borderRadius,
-        //       backgroundColor: fade(theme.palette.common.white, 0.15),
-        //       '&:hover': {
-        //         backgroundColor: fade(theme.palette.common.white, 0.25),
-        //       },
-        //       marginRight: theme.spacing(2),
-        //       marginLeft: 0,
-        //       width: '100%',
-        //       [theme.breakpoints.up('sm')]: {
-        //         marginLeft: theme.spacing(3),
-        //         width: 'auto',
-        //       },
-        //     },
-        //     searchIcon: {
-        //       padding: theme.spacing(0, 2),
-        //       height: '100%',
-        //       position: 'absolute',
-        //       pointerEvents: 'none',
-        //       display: 'flex',
-        //       alignItems: 'center',
-        //       justifyContent: 'center',
-        //     },
-        //     inputRoot: {
-        //       color: 'inherit',
-        //     },
-        //     inputInput: {
-        //       padding: theme.spacing(1, 1, 1, 0),
-        //       // vertical padding + font size from searchIcon
-        //       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-        //       transition: theme.transitions.create('width'),
-        //       width: '100%',
-        //       [theme.breakpoints.up('md')]: {
-        //         width: '20ch',
-        //       },
-        //     },
-        //     margin: {
-        //         margin: theme.spacing(1),
-        //     },
-        //   }));
-        
-        // const classes = useStyles();
+      
        
         return (
             <FeedContainer>
                 <TitleContainer>
                     <Title>4Food</Title> 
                 </TitleContainer>
-
-                <SearchContainer>
-                    {/* <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                        <SearchIcon />
-                        </div>
-                        <InputBase
-                        name="searchInput"
-                        onChange={this.handleInputChange}
-                        value={this.state.searchInput}
-                        placeholder="Restaurantes"
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                        }}
-                        inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </div> */}
-                    <SearchInput 
-                        name="searchInput"
-                        onChange={this.handleInputChange}
-                        value={this.state.searchInput}
-                        placeholder="Restaurante"                           
-
-                    />
-                </SearchContainer>
-                
+                <SearchBar
+                onChange={this.handleInputChange}  
+                hintText="Restaurantes"              
+                style={{
+                    margin: '0 auto',
+                    maxWidth: 800
+                }}
+                />
+                                
                 <CardContainer>
                     <ImgMediaCard />                                 
                 </CardContainer>
@@ -172,16 +108,14 @@ const CardContainer = styled.div`
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
 `
-const SearchInput = styled.input`
+const SearchContainer = styled.div`
     width: 328px;
     height: 56px;
     border-radius: 2px;
-    border: solid 1px #b8b8b8;
+    border: solid 1px #b8b8b8;    
 `
-const SearchContainer = styled.div`
-    
-    display: flex;
-    align-itens: center;
-    justify-content: center;
-`
+
+
+
+
 
