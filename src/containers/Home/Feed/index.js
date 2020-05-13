@@ -5,9 +5,12 @@ import { routes } from "../../Router";
 import styled from "styled-components";
 //importar as actions
 import  ImgMediaCard  from "../../../components/Card";
+import SimpleHeaderNavigation from "../../../components/ScrollLateral";
+
 
 //MATERIAL-UI SEARCH
 import SearchBar from 'material-ui-search-bar'
+
 
 
 
@@ -44,6 +47,10 @@ class FeedPage extends Component {
                     maxWidth: 800
                 }}
                 />
+                <NavigationContainer>
+                    <SimpleHeaderNavigation/>
+                </NavigationContainer>
+                
                                 
                 <CardContainer>
                     <ImgMediaCard />                                 
@@ -55,6 +62,7 @@ class FeedPage extends Component {
                     <ImgMediaCard />                                 
                 </CardContainer>
 
+               
             </FeedContainer>
         );
     }
@@ -114,7 +122,16 @@ const SearchContainer = styled.div`
     border-radius: 2px;
     border: solid 1px #b8b8b8;    
 `
-
+const NavigationContainer = styled.div`
+    width: 360px;
+    height: 42px;
+    margin: 10px;   
+`
+const BottomNavigationContainer = styled.div`
+    height: 49px;
+    width: 360px;
+    
+`
 
 
 
