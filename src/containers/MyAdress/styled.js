@@ -21,6 +21,7 @@ export const Button = styled.button `
 
 `
 export const TextFieldStyled = styled(TextField) `
+
     width: 328px;
     height: 56px;
     border-radius: 2px;
@@ -47,7 +48,7 @@ export const Text = styled.text `
 export const DivTitle = styled.div`
     width: 360px;
     height: 42px;
-    margin-top:80px;
+    margin-top:30px;
     text-align: center;
 
 `

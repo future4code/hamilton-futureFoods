@@ -5,13 +5,12 @@ import { connect } from "react-redux";
 import LoginPage from "../LoginPage";
 import SignUpPage from "../SignUpPage";
 import MyAdress from "../MyAdress"
-import SignUpPage from "../SignUpPage"
 import FeedPage from "../Home/Feed";
 
 const routes = {
   root:"/",
-  signup:"/signup"
-   feedpage: "/", //MUDAR ISSO, NÃO PODE FICAR ASSIM
+  signup:"/signup",
+  feedpage: "/feed", 
   myadress:"/myadress"
 
 };
@@ -24,7 +23,7 @@ function Router(props) {
         <Route exact path={routes.feedpage} component={FeedPage} />
         <Route exact path={routes.root} component={LoginPage} />
         <Route exact path={routes.signup} component={SignUpPage} />
-         <Route exact path={routes.myadress} component={MyAdress} />
+        <Route exact path={routes.myadress} component={MyAdress} />
 
       </Switch>
     </ConnectedRouter>
