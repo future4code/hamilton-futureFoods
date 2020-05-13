@@ -14,7 +14,7 @@ render() {
     return (
         <>
         <WrapperBackButton>
-            <div>{this.props.showButtonGoBack ? <img src={require('../../Assets/back.svg')} onClick={this.props.goBack}/> : "" }</div>
+            <div>{this.props.showButtonGoBack ? <img src={require('../../assets/back.svg')} onClick={this.props.goBack}/> : "" }</div>
         </WrapperBackButton>
         <Divider/>
         </>
