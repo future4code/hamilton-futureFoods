@@ -19,3 +19,4 @@ const feed = (state = initialState, action) => {
 }
 
 export default feed;
+
