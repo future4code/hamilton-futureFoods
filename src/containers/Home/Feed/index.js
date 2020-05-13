@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { getAllRestaurants, getRestaurantsDetails } from "../../../actions/feedRestaurants";
 import  ImgMediaCard  from "../../../components/Card";
 import SimpleHeaderNavigation from "../../../components/ScrollLateral";
-
+import RestaurantsList from "../../restaurantsList/index";
 //MATERIAL-UI SEARCH
 import SearchBar from 'material-ui-search-bar'
 
@@ -22,7 +22,7 @@ class FeedPage extends Component {
     componentDidMount(){
         const token = window.localStorage.getItem("token")
         if (token === null) {
-          //this.props.goToLoginPage()
+          this.props.goToLoginPage()
         }
     
         this.props.getAllRestaurants()
@@ -39,14 +39,16 @@ class FeedPage extends Component {
 
 
     render() {
-      const { allRestaurants } = this.props
+        const { searchInput } = this.state
+        const { allRestaurants } = this.props
        
         return (
-            <FeedContainer>
+            <div>
                 <TitleContainer>
                     <Title>4Food</Title> 
                 </TitleContainer>
                 <SearchBar
+                value={searchInput}
                 onChange={this.handleInputChange}  
                 hintText="Restaurantes"              
                 style={{
@@ -58,40 +60,40 @@ class FeedPage extends Component {
                     <SimpleHeaderNavigation/>
                 </NavigationContainer>
                 
-                                
-                <CardContainer>
-                    <ImgMediaCard />                                 
-                </CardContainer>
-                <CardContainer>
-                    <ImgMediaCard />                                 
-                </CardContainer>
+                               
                 <CardContainer>
                     <ImgMediaCard />                                 
                 </CardContainer>
 
-               
-            </FeedContainer>
+                {allRestaurants ? 
+                    <CardContainer>
+                        <RestaurantsList/>
+                    </CardContainer>
+                    :
+                    <CardContainer>
+                        <LoadingRing/>
+                        <p>Carregando lista de restaurantes.</p>
+                    </CardContainer>
+                }               
+            </div>
         );
     }
 }
 
-// const mapStateToProps = (state) => ({
-    
-// });
+const mapStateToProps = (state) => ({
+    allRestaurants: state.restaurants.allRestaurants,
+});
 
-// const mapDispatchToProps = (dispatch) => {
-//     return{
-
-//     }
-// };
-
-
-export default FeedPage;
+const mapDispatchToProps = (dispatch) => ({
+        goToLoginPage: () => dispatch(push(routes.root)),
+        getAllRestaurants: () => dispatch(getAllRestaurants()),
+});
 
 
-const FeedContainer = styled.div`
-    
-`
+export default connect(mapStateToProps, mapDispatchToProps)(FeedPage);
+
+
+
 const Title = styled.p`
     width: 45px;
     height: 19px;
@@ -122,24 +124,12 @@ const CardContainer = styled.div`
     backdrop-filter: blur(10px);
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
-`
-const SearchContainer = styled.div`
-    width: 328px;
-    height: 56px;
-    border-radius: 2px;
-    border: solid 1px #b8b8b8;    
-`
+`ae
+
+
+\\zs
 const NavigationContainer = styled.div`
     width: 360px;
     height: 42px;
     margin: 10px;   
 `
-const BottomNavigationContainer = styled.div`
-    height: 49px;
-    width: 360px;
-    
-`
-
-
-
-

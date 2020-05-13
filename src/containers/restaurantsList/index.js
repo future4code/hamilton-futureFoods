@@ -1,28 +1,27 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
-import styled from "styled-components";
 import { getAllRestaurants, getRestaurantsDetails } from "../../actions/feedRestaurants";
+
+//MATERIAL-UI CARD
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import Hamburguer from '../../Assets/hamburguer.jpg';
+
 
 class RestaurantsList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            allRestaurantsList: [],
+            
         };
     }
 
-    componentDidMount(){
-        const token = window.localStorage.getItem("token")
-        if (token === null) {
-          this.props.goToLoginPage()
-        }
     
-        this.props.getAllRestaurants()
-    }
-
-
     handleOnClickRestaurantsDetails = (restaurantId) => {
         console.log(restaurantId)
         this.props.getRestaurantsDetails(restaurantId);
@@ -35,14 +34,39 @@ class RestaurantsList extends Component {
 
         return(
             <Fragment>
+                <Card 
+                key={restaurants.id}
+                onClick={handleOnClickRestaurantsDetails}
+                >
+                    <CardActionArea>
+                        <CardMedia
+                        component="img"
+                        alt="Hamburguer"
+                        height="140"
+                        image={Hamburguer}
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {restaurants.name}
+                            </Typography>
 
-            </Fragment>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                            {restaurants.deliveryTime} 
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {restaurants.shipping}  
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>      
+                </Card>
+            
+            </Fragment>            
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    allRestaurants: state.restaurants.allRestaurants.restaurant,
+    allRestaurants: state.restaurants.allRestaurants,
 });
 
 const mapDispatchToProps = (dispatch) => ({
