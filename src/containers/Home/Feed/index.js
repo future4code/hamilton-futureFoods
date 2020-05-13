@@ -1,17 +1,14 @@
 import React, { Component } from "react";
-//import { connect } from "react-redux";
-//import { push } from "connected-react-router";
+import { connect } from "react-redux";
+import { push } from "connected-react-router";
 import { routes } from "../../Router";
 import styled from "styled-components";
-//importar as actions
+import { getAllRestaurants, getRestaurantsDetails } from "../../../actions/feedRestaurants";
 import  ImgMediaCard  from "../../../components/Card";
 import SimpleHeaderNavigation from "../../../components/ScrollLateral";
 
 //MATERIAL-UI SEARCH
 import SearchBar from 'material-ui-search-bar'
-
-
-
 
 
 class FeedPage extends Component {
@@ -22,16 +19,27 @@ class FeedPage extends Component {
         };
     }
 
+    componentDidMount(){
+        const token = window.localStorage.getItem("token")
+        if (token === null) {
+          //this.props.goToLoginPage()
+        }
+    
+        this.props.getAllRestaurants()
+      }
+
     handleInputChange = (event) => {
         this.setState({
           [event.target.name]: event.target.value
         });
-      };
+    };
+
+    
 
 
 
     render() {
-      
+      const { allRestaurants } = this.props
        
         return (
             <FeedContainer>
