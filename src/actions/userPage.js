@@ -52,3 +52,27 @@ export const singUp = (name, email, password, cpf) => async (dispatch) => {
          alert("Ocorreu um erro inesperado. Tente novamente")
      }
 }
+
+export const putAdress = (form) => async(dispatch) =>  {
+    const token = window.localStorage.getItem ("token")
+    const body = {
+        form
+    }
+    try {
+        const response = await axios.put (`${baseUrl}/adress`, body, {
+            headers: {
+                "auth": token,
+             "Content-Type":"application/json"
+
+            }
+        })
+    // Guardar token e dados do user ????
+    window.localStorage.setItem("token", response.data.token)
+    // Não sei se precisa
+    window.localStorage.setItem("user", response.data.user)
+    dispatch(routes.feedpage)
+    } catch (error) {
+        alert("Erro")
+        dispatch(routes.myadress)
+    }
+}
