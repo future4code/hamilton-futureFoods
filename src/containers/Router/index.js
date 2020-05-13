@@ -10,8 +10,9 @@ import FeedPage from "../Home/Feed";
 export const routes = {
   root:"/",
   signup:"/signup",
-  feedpage: "/", 
+  feedpage: "/feed", 
   myadress:"/myadress"
+
 
 };
 

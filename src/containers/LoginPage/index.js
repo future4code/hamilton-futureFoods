@@ -25,6 +25,8 @@ const FormLogin = [
         required:true,
         pattern:"[A-Za-z0-9]{6,10}"
         
+
+
     }
 ]
 
@@ -92,6 +94,5 @@ const mapDispatchToProps = (dispatch) =>
 
     
       
-   
 
 export default connect(null, mapDispatchToProps)(LoginPage)
