@@ -56,6 +56,3 @@ export const getRestaurantsDetails = (restaurantId) => async (dispatch) => {
 
 
 
-
-
-
