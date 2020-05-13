@@ -7,7 +7,6 @@ import styled from "styled-components";
 import  ImgMediaCard  from "../../../components/Card";
 import SimpleHeaderNavigation from "../../../components/ScrollLateral";
 
-
 //MATERIAL-UI SEARCH
 import SearchBar from 'material-ui-search-bar'
 
