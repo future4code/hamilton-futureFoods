@@ -12,8 +12,6 @@ import SearchBar from 'material-ui-search-bar'
 
 
 
-
-
 class FeedPage extends Component {
     constructor(props) {
         super(props);
