@@ -4,13 +4,14 @@ import {replace, push} from "connected-react-router";
 
 
 const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/FourFoodA"
-const loginUser = (login) => {
-    return {
-    type: "LOGIN_USER",
-    payload:{login}
-    }
-    
-}
+
+// importar para o arquivo profile.js
+export const setUserInfo = (info) => { 
+    return { type: "SET_USER_INFO", 
+    payload: { info }, 
+  };
+};
+
 
 export const login = (email, password) => async(dispatch) => {
     const body = {
@@ -53,26 +54,51 @@ export const singUp = (name, email, password, cpf) => async (dispatch) => {
      }
 }
 
+// erro 400 - não autorizado
 export const putAdress = (form) => async(dispatch) =>  {
-    const token = window.localStorage.getItem ("token")
-    const body = {
-        form
-    }
+    const token = localStorage.getItem ("token")
+
     try {
-        const response = await axios.put (`${baseUrl}/adress`, body, {
+        const response = await axios.put(`${baseUrl}/address`, form, {
             headers: {
-                "auth": token,
+                
+                auth: token,
              "Content-Type":"application/json"
 
             }
+            
         })
-    // Guardar token e dados do user ????
-    window.localStorage.setItem("token", response.data.token)
-    // Não sei se precisa
-    window.localStorage.setItem("user", response.data.user)
-    dispatch(routes.feedpage)
+
+    localStorage.setItem("token", response.data.token)
+    dispatch(push(routes.feedpage))
+
+    console.log("deu certo")
+    console.log(form)
+
     } catch (error) {
         alert("Erro")
-        dispatch(routes.myadress)
+        console.log(form)
+        // dispatch(routes.myadress)
+    }
+}
+
+ // importar para o arquivo profile.js
+export const getProfile = (token) => async (dispatch) => { 
+    try { const response = await axios.get(`${baseUrl}/profile`, 
+    { headers: { auth: token }, }); 
+    dispatch(setUserInfo(response.data.user)); } 
+    catch (err) { 
+        console.log(err); 
+    }};
+    
+export const updateProfile = (form) => async (dispatch) => {
+    const token = localStorage.getItem("token")
+    try {
+        const response = await axios.put(`${baseUrl}/profile`, form, {
+        headers: { auth: token }
+        
+        } )
+    }catch (err) {
+
     }
 }
