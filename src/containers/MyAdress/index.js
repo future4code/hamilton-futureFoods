@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from "react"
 import { connect } from"react-redux"
 import { routes } from "../Router";
+import {bindActionCreators} from "redux";
+import * as todoAction from "../../actions/userPage";
 //Estilização
 import { Button, 
         TextFieldStyled, 
@@ -8,6 +10,7 @@ import { Button,
         Text,
         DivTitle } from "./styled"
 import BackButton from "../BackButton";
+
 
 
 const FormMyAdress = [
@@ -70,6 +73,12 @@ handleOnChangeForm = event => {
     const { name, value} = event.target;
     this.setState({form: {...this.state.form, [name]:value}})
 }
+
+handleOnSubmit = event => {
+    event.preventDefault()
+    this.props.putAdress(this.state.form)
+    this.setState({form:""})
+}
 render () {
  return (
     <Fragment>
@@ -83,7 +92,7 @@ render () {
             {FormMyAdress.map(info => {
                 return (
                 <div key={info.name}>
-                {/* <label htmlFor={info.name}>{info.label}</label> */}
+                
                     <TextFieldStyled   
                         name={info.name}
                         placeholder={info.placeholder}
@@ -104,4 +113,8 @@ render () {
    </Fragment>)
 }       
 }
-export default connect(null,null)(MyAdress)
+
+const mapDispatchToProps = (dispatch) => 
+    bindActionCreators(todoAction,dispatch)
+
+export default connect(null,mapDispatchToProps)(MyAdress)
