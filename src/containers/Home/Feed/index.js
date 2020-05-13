@@ -5,6 +5,7 @@ import { routes } from "../../Router";
 import styled from "styled-components";
 //importar as actions
 import  ImgMediaCard  from "../../../components/Card";
+import ScrollableTabs from "../../../components/AutomaticScrollButtons";
 
 //MATERIAL-UI SEARCH
 import SearchBar from 'material-ui-search-bar'

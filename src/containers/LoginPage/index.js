@@ -27,6 +27,7 @@ const FormLogin = [
         
     }
 ]
+
 class LoginPage extends Component {
     constructor(props) {
     super(props)
@@ -37,82 +38,60 @@ class LoginPage extends Component {
             password: ""
         }
     }}
-handleOnChangeForm = event => {
-    const { name, value} = event.target;
-    this.setState({ form: {...this.state.form,[name]:value}})
+    handleOnChangeForm = event => {
+        const { name, value} = event.target;
+        this.setState({ form: {...this.state.form,[name]:value}})
+    }
+    handleOnSubmit = event => {
+        event.preventDefault()
+        this.props.login(this.state.form.email, this.state.form.password)
+
+    }
+
+    render () {
+        return (
+            <Fragment>
+                <Image src={"https://cdn.zeplin.io/5dd5ab8e5fb2a0060f81698f/assets/2420CEFD-BBDE-49C8-91E3-A49B116851E9.svg"} />
+                <DivTitle>
+                    <Text>Entrar</Text>
+                </DivTitle>
+                <WrapperAdress>  
+                <form onSubmit={this.handleOnSubmit}>
+                    {FormLogin.map(info => {
+                        return (
+                        <div key={info.name}>
+                        {/* <label htmlFor={info.name}>{info.label}</label> */}
+                            <TextFieldStyled   
+                                name={info.name}
+                                placeholder={info.placeholder}
+                                type={info.type}
+                                value={this.state.form[info.name] || ""}
+                                required={info.required}
+                                onChange={this.handleOnChangeForm}
+                                label={info.label}
+                                variant="outlined"
+                                InputLabelProps = {{shrink:true}} pattern={info.pattern}
+                                title={info.title}
+                            />
+                        </div>)
+                        })}
+                        <Button type="submit">Entrar</Button>
+                </form>
+                </WrapperAdress> 
+                <DivTitle>
+                    <Text>Não possui cadastro? Clique aqui.</Text>
+                </DivTitle>
+        </Fragment>)
+    }       
 }
-handleOnSubmit = event => {
-    event.preventDefault()
-    this.props.login(this.state.form.email, this.state.form.password)
 
-}
 
-render () {
- return (
-    <>
-    <form onSubmit={this.handleOnSubmit}>
-        {FormLogin.map(info => {
-            return (
-                <div key={info.name}>
-                <label htmlFor={info.name}>{info.name}</label>
-                    <input
-                        name={info.name}
-                        placeholder={info.placeholder}
-                        type={info.type}
-                        value={this.state.form[info.name] || ""}
-                        required={info.required}
-                        onChange={this.handleOnChangeForm}
-                        pattern={info.pattern}
-                        title={info.title}
+const mapDispatchToProps = (dispatch) => 
+    bindActionCreators(todoAction,dispatch)
+       
 
-                    />
-
-                </div>)
-        })}
-        <button type="submit">Entrar</button>
-    </form>
-    </> 
- )
-
-}
-
-}
-const mapDispatchToProps = (dispatch) =>
-bindActionCreators(todoAction,dispatch)
-    return (
-       <Fragment>
-           <Image src={"https://cdn.zeplin.io/5dd5ab8e5fb2a0060f81698f/assets/2420CEFD-BBDE-49C8-91E3-A49B116851E9.svg"} />
-           <DivTitle>
-               <Text>Entrar</Text>
-           </DivTitle>
-           <WrapperAdress>  
-           <form onSubmit={this.handleOnSubmit}>
-               {FormLogin.map(info => {
-                   return (
-                   <div key={info.name}>
-                   {/* <label htmlFor={info.name}>{info.label}</label> */}
-                       <TextFieldStyled   
-                           name={info.name}
-                           placeholder={info.placeholder}
-                           type={info.type}
-                           value={this.state.form[info.name] || ""}
-                           required={info.required}
-                           onChange={this.handleOnChangeForm}
-                           label={info.label}
-                           variant="outlined"
-                           InputLabelProps = {{shrink:true}} pattern={info.pattern}
-                           title={info.title}
-                       />
-                   </div>)
-                   })}
-                   <Button type="submit">Entrar</Button>
-           </form>
-           </WrapperAdress> 
-           <DivTitle>
-               <Text>Não possui cadastro? Clique aqui.</Text>
-           </DivTitle>
-      </Fragment>)
-   }       
-   }
+    
+      
+   
 
 export default connect(null, mapDispatchToProps)(LoginPage)
