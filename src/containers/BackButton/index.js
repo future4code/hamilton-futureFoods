@@ -3,21 +3,30 @@ import {connect} from 'react-redux';
 import { push, goBack } from "connected-react-router";
 import {routes} from "../Router"
 import { Divider } from '@material-ui/core';
-import styled from 'styled-components'
+import { WrapperTitle,
+        WrapperBackButton,
+        WrapperHeader,
+        Text,
+        BackButtonIcon} from './styled'
 
-const WrapperBackButton = styled.div `
-height:64px;
-`
 class BackButton extends Component {
-
 render() {
     return (
-        <>
-        <WrapperBackButton>
-            <div>{this.props.showButtonGoBack ? <img src={require('../../assets/back.svg')} onClick={this.props.goBack}/> : "" }</div>
-        </WrapperBackButton>
-        <Divider/>
-        </>
+
+        <Fragment>
+
+            <WrapperTitle>
+            <WrapperHeader>
+                <Text>{this.props.header}</Text>
+            </WrapperHeader>
+            <WrapperBackButton>
+                <div>{this.props.showButtonGoBack ? <BackButtonIcon src={require('../../Assets/back.svg')} onClick={this.props.goBack}/> : "" }</div>
+            </WrapperBackButton>
+            <Divider/>
+            </WrapperTitle>
+           
+        </Fragment>
+
     )
 }
 }
