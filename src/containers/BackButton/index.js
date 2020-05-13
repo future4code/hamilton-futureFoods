@@ -12,6 +12,7 @@ import { WrapperTitle,
 class BackButton extends Component {
 render() {
     return (
+
         <Fragment>
 
             <WrapperTitle>
@@ -25,6 +26,7 @@ render() {
             </WrapperTitle>
            
         </Fragment>
+
     )
 }
 }

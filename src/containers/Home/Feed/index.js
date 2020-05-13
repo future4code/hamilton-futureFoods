@@ -12,8 +12,6 @@ import SearchBar from 'material-ui-search-bar'
 
 
 
-
-
 class FeedPage extends Component {
     constructor(props) {
         super(props);
@@ -100,7 +98,7 @@ const TitleContainer = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    align-itens: center;
+    align-items: center;
     justify-content: center;
     margin-bottom: 20px;
     -webkit-backdrop-filter: blur(10px);
