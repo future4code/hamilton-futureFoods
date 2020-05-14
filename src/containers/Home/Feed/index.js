@@ -124,10 +124,7 @@ const CardContainer = styled.div`
     backdrop-filter: blur(10px);
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
-`ae
-
-
-\\zs
+`
 const NavigationContainer = styled.div`
     width: 360px;
     height: 42px;
