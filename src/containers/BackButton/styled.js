@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export const WrapperTitle = styled.div `
-    height:64px;
+    height:60px;
     width:360px;
+    
 `
 export const WrapperBackButton = styled.div `
 
@@ -11,6 +12,8 @@ export const BackButtonIcon = styled.img `
     width: 23px;
     height: 24px;
     object-fit: contain;
+    margin-left:16px;
+    margin-bottom:10px;
 `
 export const WrapperHeader = styled.div `
     width: 175px;

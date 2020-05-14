@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/FourFoodA";
-const token = window.localsotrage.getItem("token");
+const token = window.localStorage.getItem("token");
 
 
 //FUNÇÕES SINCRONAS
@@ -103,7 +103,7 @@ export const getOrderHistory = () => async(dispatch) => {
     const config = {
         headers: {
             'auth':token,
-            "Content-Type":"application/json"
+           
         }
     }
     const response = await axios.get(`${baseUrl}/orders/history`, config)

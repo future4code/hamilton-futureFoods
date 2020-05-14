@@ -43,8 +43,8 @@ class Footer extends Component {
                    <div>{this.props.carrinho ? (<Img src={require('../../Assets/carrinho.svg')} color="red"/> ):
                     (<Img src={require('../../Assets/carrinho.svg')} color="none" /> )}</div>
        
-                   <div>{this.props.profile ? (<Img src={require('../../Assets/pessoa.svg')} style={{color:"red"}}/> ):
-                    (<Img src={require('../../Assets/pessoa.svg')} style={{color:"none"}}/> )} </div> 
+                   <div>{this.props.profile ? (<Img src={require('../../Assets/perfil.svg')} style={{color:"red"}}/> ):
+                    (<Img src={require('../../Assets/perfil.svg')} style={{color:"none"}}/> )} </div> 
 
                 
            </div>

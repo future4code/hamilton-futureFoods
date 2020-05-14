@@ -2,7 +2,8 @@ const initialState = {
     allRestaurants: [],
     selectedRestaurantId: "",
     restaurantDetails: {},
-    order:[]
+    order:[],
+    orderHistory:[]
 }
 
 const feed = (state = initialState, action) => {

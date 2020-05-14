@@ -22,6 +22,7 @@ export const login = (email, password) => async(dispatch) => {
         const response = await axios.post(`${baseUrl}/login`, body)
         localStorage.setItem("token", response.data.token)
         window.localStorage.setItem("user", response.data.user)
+        console.log(response.data.user)
 
         if(response.data.user.hasAdress) {
             dispatch(replace(routes.feedPage))
@@ -82,10 +83,15 @@ export const putAdress = (form) => async(dispatch) =>  {
 }
 
  // importar para o arquivo profile.js
-export const getProfile = (token) => async (dispatch) => { 
-    try { const response = await axios.get(`${baseUrl}/profile`, 
-    { headers: { auth: token }, }); 
-    dispatch(setUserInfo(response.data.user)); } 
+export const getProfile = () => async (dispatch) => { 
+    
+    try { 
+        const token = localStorage.getItem('token')
+        const response = await axios.get(`${baseUrl}/profile`, 
+    { headers: { 'auth': token }, }); 
+    dispatch(setUserInfo(response.data.user));
+    console.log(response.data.user)} 
+    
     catch (err) { 
         console.log(err); 
     }};
