@@ -6,8 +6,7 @@ const initialState = {
 }
 
 const feed = (state = initialState, action) => {
-    console.log(action.payload)
-    switch(action.type) {
+        switch(action.type) {
         case 'SET_ALL_RESTAURANTS':
             const restaurantList = action.payload.allRestaurants;
             return {...state, allRestaurants: restaurantList};

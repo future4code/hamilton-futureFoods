@@ -26,9 +26,6 @@ const loadingAnimation = keyframes`
 const LoadingRingWrapper = styled.div`
   display: inline-block;
   position: relative;
-  dipĺay: flex;
-  align-itens: center;
-  justify-content: center;
   width: 60px;
   height: 60px;
   background-color: #ffffff;
@@ -45,7 +42,7 @@ const Ring = styled.div`
   border: 8px solid #000000;
   border-radius: 50%;
   animation: ${loadingAnimation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #000 transparent transparent transparent;
+  border-color: #b8b8b8 transparent transparent transparent;
 
 &:nth-child(1) {
   animation-delay: -0.45s;

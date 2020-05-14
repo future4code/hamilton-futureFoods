@@ -48,32 +48,31 @@ class FeedPage extends Component {
                 <TitleContainer>
                     <Title>4Food</Title> 
                 </TitleContainer>
-                <SearchBar
-                value={searchInput}
-                onChange={this.handleInputChange}  
-                hintText="Restaurantes"              
-                style={{
-                    margin: '0 auto',
-                    maxWidth: 800
-                }}
-                />
+
+                <SearchContainer>
+                    <SearchBar
+                    value={searchInput}
+                    onChange={this.handleInputChange}  
+                    hintText="Restaurantes"              
+                    style={{
+                        margin: '0 auto',
+                        maxWidth: 800
+                    }}
+                    />
+                </SearchContainer>
+                
                 <NavigationContainer>
                     <SimpleHeaderNavigation/>
                 </NavigationContainer>
                 
-                               
-                <CardContainer>
-                    <ImgMediaCard />                                 
-                </CardContainer>
-
                 {allRestaurants ? 
                     <CardContainer>
                         <RestaurantsList/>
                     </CardContainer>
                     :
                     <CardContainer>
-                        {/* <LoadingRing/> */}
-                        <h4>Carregando lista de restaurantes.</h4>
+                        <p>Carregando lista de restaurantes.</p>
+                        <LoadingRing/>
                     </CardContainer>
                 }                
             </div>
@@ -128,6 +127,12 @@ const CardContainer = styled.div`
 `
 const NavigationContainer = styled.div`
     width: 360px;
-    height: 42px;
-    margin: 10px;   
+    height: 42px; 
+    margin: 10px 0px;
+    dipĺay: flex;
+    align-itens: center;
+    justify-content: center;  
+`
+const SearchContainer = styled.div`
+    margin: 10px 16px;
 `
