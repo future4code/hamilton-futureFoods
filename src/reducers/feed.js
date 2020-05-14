@@ -1,9 +1,10 @@
 const initialState = {
     allRestaurants: [],
     selectedRestaurantId: "",
-    restaurantDetails: [],
-    order:[]
-}
+    restaurantDetails: {},
+    order:[],
+    orderHistory:[]
+
 
 const feed = (state = initialState, action) => {
         switch(action.type) {

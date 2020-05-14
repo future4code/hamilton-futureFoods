@@ -4,7 +4,7 @@ import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
 import { getAllRestaurants, getRestaurantsDetails } from "../../actions/feedRestaurants";
 
-//MATERIAL-UI CARD
+MATERIAL-UI CARD
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -21,7 +21,7 @@ class RestaurantsList extends Component {
         };
     }
 
-    
+
     handleOnClickRestaurantsDetails = (restaurantId) => {
         console.log(restaurantId)
         //this.props.getRestaurantsDetails(restaurantId);
@@ -80,6 +80,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsList)
+
 
 
 

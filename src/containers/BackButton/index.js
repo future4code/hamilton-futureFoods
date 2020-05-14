@@ -4,7 +4,6 @@ import { push, goBack } from "connected-react-router";
 import {routes} from "../Router"
 import { Divider } from '@material-ui/core';
 import { WrapperTitle,
-        WrapperBackButton,
         WrapperHeader,
         Text,
         BackButtonIcon} from './styled'
@@ -21,10 +20,11 @@ render() {
             <WrapperHeader>
                 <Text>{this.props.header}</Text>
             </WrapperHeader>
-            <WrapperBackButton>
+            
                 <div>{this.props.showButtonGoBack ? <BackButtonIcon src={require('../../Assets/back.svg')} onClick={goBack}/> : "" }</div>
-            </WrapperBackButton>
-            <Divider/>
+                <Divider/>
+            
+            
             </WrapperTitle>
            
         </Fragment>
