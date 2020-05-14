@@ -62,9 +62,8 @@ export const putAdress = (form) => async(dispatch) =>  {
         const response = await axios.put(`${baseUrl}/address`, form, {
             headers: {
                 
-                auth: token,
-             "Content-Type":"application/json"
-
+                'auth': token,
+               
             }
             
         })
