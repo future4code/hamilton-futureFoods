@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { getAllRestaurants, getRestaurantsDetails } from "../../../actions/feedRestaurants";
 import  ImgMediaCard  from "../../../components/Card";
 import SimpleHeaderNavigation from "../../../components/ScrollLateral";
-import RestaurantsList from "../../restaurantsList/index";
+//import RestaurantsList from "../../restaurantsList/index";
 //MATERIAL-UI SEARCH
 import SearchBar from 'material-ui-search-bar'
 
@@ -74,14 +74,14 @@ class FeedPage extends Component {
                         <LoadingRing/>
                         <p>Carregando lista de restaurantes.</p>
                     </CardContainer>
-                }               
+                }                
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    allRestaurants: state.restaurants.allRestaurants,
+    
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -124,10 +124,7 @@ const CardContainer = styled.div`
     backdrop-filter: blur(10px);
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
-`ae
-
-
-\\zs
+`
 const NavigationContainer = styled.div`
     width: 360px;
     height: 42px;

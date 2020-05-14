@@ -24,42 +24,45 @@ class RestaurantsList extends Component {
     
     handleOnClickRestaurantsDetails = (restaurantId) => {
         console.log(restaurantId)
-        this.props.getRestaurantsDetails(restaurantId);
-        localStorage.setItem('RestaurantId ', restaurantId)
+        //this.props.getRestaurantsDetails(restaurantId);
+        //localStorage.setItem('RestaurantId ', restaurantId)
         //this.props.goToRestaurantsDetailsPage();
     }
 
     render() {
         const { allRestaurants } = this.props
-
+        
         return(
             <Fragment>
-                <Card 
-                key={restaurants.id}
-                onClick={handleOnClickRestaurantsDetails}
-                >
-                    <CardActionArea>
-                        <CardMedia
-                        component="img"
-                        alt="Hamburguer"
-                        height="140"
-                        image={Hamburguer}
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {restaurants.name}
-                            </Typography>
-
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            {restaurants.deliveryTime} 
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {restaurants.shipping}  
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>      
-                </Card>
-            
+                {allRestaurants.map(restaurant => {
+                 return(
+                    <Card 
+                    key={restaurants.id}
+                    onClick={this.handleOnClickRestaurantsDetails}
+                    >
+                        <CardActionArea>
+                            <CardMedia
+                            component="img"
+                            alt="Hamburguer"
+                            height="140"
+                            image={restaurants.logoUrl}
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {restaurants.name}
+                                </Typography>
+    
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                {restaurants.deliveryTime} 
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {restaurants.shipping}  
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>      
+                    </Card>
+                 )
+            })}                           
             </Fragment>            
         )
     }
@@ -72,7 +75,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     goToLoginPage: () => dispatch(push(routes.root)),
     getAllRestaurants: () => dispatch(getAllRestaurants()),
-    getRestaurantsDetails: (restaurantId) => dispatch(getrestaurantsDetails(restaurantId)),
+    //getRestaurantsDetails: (restaurantId) => dispatch(getrestaurantsDetails(restaurantId)),
     //goToRestaurantDetailsPage: () => dispatch(push(routes.restaurantDetails)), 
 });
 

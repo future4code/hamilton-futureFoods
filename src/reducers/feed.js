@@ -1,7 +1,7 @@
 const initialState = {
     allRestaurants: [],
     selectedRestaurantId: "",
-    restaurantDetails: {},
+    restaurantDetails: [],
 }
 
 const feed = (state = initialState, action) => {
