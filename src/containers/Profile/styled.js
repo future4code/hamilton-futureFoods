@@ -7,7 +7,7 @@ export const Title = styled.title `
 
   width: 328px;
   height: 18px;
-  font-family: Roboto;
+  font-family: "Roboto";
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;

@@ -36,27 +36,23 @@ componentDidMount = () => {
 render(){
   
     const { goToEditUser, goToMyAdress, user } = this.props
-    console.log(user)
-
+  
     return (
     <WrapperProfile>
-      <BackButton header={"Meu Perfil"} showButtonGoBack = {false}/>
-
-      
-        {user && 
-         
-          <div>
-            <Title><strong>{user.name}</strong></Title>
-            <Title><strong>{user.email}</strong></Title>
-            <Title><strong>{user.cpf}</strong></Title>
-            <Img src= {`${Edit}`} onClick = {goToEditUser}/>
-        </div>
-            }
+      <BackButton header={"Meu Perfil"}/>
         
-
+       <div>
+         
+            <p><strong>{user && user.name}</strong></p>
+            <p><strong>{user && user.email}</strong></p>
+            <p><strong>{user && user.cpf}</strong></p>
+      </div>
+            <Img src= {`${Edit}`} onClick = {goToEditUser}/>
+       
+        
       <div>
-        <Title>Enderço cadastrado: </Title>
-        {/* <Title><strong>{user.address}</strong></Title> */}
+        <p>Enderço cadastrado: </p>
+         <p><strong>{user && user.address}</strong></p> 
         <Img src= {`${Edit}`} onClick = {goToMyAdress}/>
       </div>
         <CardMyProfile />
