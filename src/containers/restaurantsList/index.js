@@ -36,6 +36,7 @@ class RestaurantsList extends Component {
             <Fragment>
                 {allRestaurants.map(restaurant => {
                  return(
+                    
                     <Card 
                     key={restaurant.id}
                     onClick={this.handleOnClickRestaurantsDetails}
@@ -53,10 +54,10 @@ class RestaurantsList extends Component {
                                 </Typography>
     
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                {restaurant.deliveryTime} 
+                                    {restaurant.deliveryTime} min
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {restaurant.shipping}  
+                                    Entrega R${restaurant.shipping}  
                                 </Typography>
                             </CardContent>
                         </CardActionArea>      
@@ -69,11 +70,10 @@ class RestaurantsList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    allRestaurants: state.allRestaurants.restaurants,
+    allRestaurants: state.feed.allRestaurants,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    goToLoginPage: () => dispatch(push(routes.root)),
     getAllRestaurants: () => dispatch(getAllRestaurants()),
     //getRestaurantsDetails: (restaurantId) => dispatch(getrestaurantsDetails(restaurantId)),
     //goToRestaurantDetailsPage: () => dispatch(push(routes.restaurantDetails)), 

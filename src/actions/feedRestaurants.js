@@ -12,8 +12,6 @@ export const setAllRestaurants = (allRestaurants) => ({
         allRestaurants,
     }
 })
-
-
 export const setRestaurantsDetails = (restaurantsDetails) => ({
     type: 'SET_RESTAURANTS_DETAILS',
     payload: {
