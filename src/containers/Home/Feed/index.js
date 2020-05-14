@@ -6,7 +6,8 @@ import styled from "styled-components";
 import { getAllRestaurants, getRestaurantsDetails } from "../../../actions/feedRestaurants";
 import  ImgMediaCard  from "../../../components/Card";
 import SimpleHeaderNavigation from "../../../components/ScrollLateral";
-//import RestaurantsList from "../../restaurantsList/index";
+import LoadingRing from "../../../components/LoadingRing";
+import RestaurantsList from "../../restaurantsList/index";
 //MATERIAL-UI SEARCH
 import SearchBar from 'material-ui-search-bar'
 
@@ -71,8 +72,8 @@ class FeedPage extends Component {
                     </CardContainer>
                     :
                     <CardContainer>
-                        <LoadingRing/>
-                        <p>Carregando lista de restaurantes.</p>
+                        {/* <LoadingRing/> */}
+                        <h4>Carregando lista de restaurantes.</h4>
                     </CardContainer>
                 }                
             </div>

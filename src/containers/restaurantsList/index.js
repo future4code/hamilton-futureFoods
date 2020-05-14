@@ -37,7 +37,7 @@ class RestaurantsList extends Component {
                 {allRestaurants.map(restaurant => {
                  return(
                     <Card 
-                    key={restaurants.id}
+                    key={restaurant.id}
                     onClick={this.handleOnClickRestaurantsDetails}
                     >
                         <CardActionArea>
@@ -45,31 +45,31 @@ class RestaurantsList extends Component {
                             component="img"
                             alt="Hamburguer"
                             height="140"
-                            image={restaurants.logoUrl}
+                            image={restaurant.logoUrl}
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    {restaurants.name}
+                                    {restaurant.name}
                                 </Typography>
     
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                {restaurants.deliveryTime} 
+                                {restaurant.deliveryTime} 
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {restaurants.shipping}  
+                                    {restaurant.shipping}  
                                 </Typography>
                             </CardContent>
                         </CardActionArea>      
                     </Card>
                  )
-            })}                           
+                })}                           
             </Fragment>            
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    allRestaurants: state.restaurants.allRestaurants,
+    allRestaurants: state.allRestaurants.restaurants,
 });
 
 const mapDispatchToProps = (dispatch) => ({
