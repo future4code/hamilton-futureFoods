@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/FourFoodA";
-const token = window.localsotrage.getItem("token");
+const token = window.localStorage.getItem("token");
 
 
 //FUNÇÕES SINCRONAS
@@ -44,7 +44,8 @@ export const getAllRestaurants = () => async (dispatch) => {
     try{
         const response = await axios.get(`${baseUrl}/restaurants`,
         config)
-        dispatch(setAllRestaurants(response.data))
+        dispatch(setAllRestaurants(response.data.restaurants))
+        console.log(response.data.restaurants)
     }catch(error){
         console.log(error)
     }
