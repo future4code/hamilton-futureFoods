@@ -10,7 +10,9 @@ import { WrapperTitle,
         BackButtonIcon} from './styled'
 
 class BackButton extends Component {
+    
 render() {
+    const {goBack} = this.props
     return (
 
         <Fragment>
@@ -20,7 +22,7 @@ render() {
                 <Text>{this.props.header}</Text>
             </WrapperHeader>
             <WrapperBackButton>
-                <div>{this.props.showButtonGoBack ? <BackButtonIcon src={require('../../Assets/back.svg')} onClick={this.props.goBack}/> : "" }</div>
+                <div>{this.props.showButtonGoBack ? <BackButtonIcon src={require('../../Assets/back.svg')} onClick={goBack}/> : "" }</div>
             </WrapperBackButton>
             <Divider/>
             </WrapperTitle>

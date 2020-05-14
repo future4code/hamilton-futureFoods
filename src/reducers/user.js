@@ -5,4 +5,4 @@ const user = (state = {}, action) => {
         return {...state, userInfo: action.payload.info} 
     default: return state 
 }} 
-    export default user; 
+    export default user;

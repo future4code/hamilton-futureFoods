@@ -17,3 +17,5 @@ export const Title = styled.title `
   color: #000000;
   font-weight:bold;
 `
+export const Img = styled.img `
+`

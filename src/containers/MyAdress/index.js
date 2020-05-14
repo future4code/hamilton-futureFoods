@@ -11,11 +11,9 @@ import { Button,
         DivTitle } from "./styled"
 import BackButton from "../BackButton";
 
-
-
 const FormMyAdress = [
     {
-        name:"logradouro",
+        name:"street",
         type:"text",
         placeholder:"Rua/Av",
         label:"Logradouro",
@@ -23,7 +21,7 @@ const FormMyAdress = [
         
     },
     {
-        name:"numero",
+        name:"number",
         type:"number",
         placeholder:"Número",
         label:"Número ",
@@ -31,7 +29,7 @@ const FormMyAdress = [
        
     },
     {
-        name:"complemento",
+        name:"complement",
         type:"number",
         placeholder:"Apto./Bloco",
         label:"Complemento",
@@ -39,14 +37,14 @@ const FormMyAdress = [
        
     },
     {
-        name:"bairro",
+        name:"neighbourhood",
         type:"text",
         placeholder:"Bairro",
         label:"Bairro",
         required:true, 
     },
     {
-        name:"cidade",
+        name:"city",
         type:"text",
         placeholder:"Cidade",
         label:"Cidade",
@@ -55,7 +53,7 @@ const FormMyAdress = [
         
     },
     {
-        name:"estado",
+        name:"state",
         type:"text",
         placeholder:"Estado",
         label:"Estado",
@@ -70,7 +68,7 @@ class MyAdress extends Component {
         form: {}
     }}
 handleOnChangeForm = event => {
-    const { name, value} = event.target;
+    const { name, value } = event.target;
     this.setState({form: {...this.state.form, [name]:value}})
 }
 
