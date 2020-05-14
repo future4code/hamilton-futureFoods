@@ -42,7 +42,7 @@ class Footer extends Component {
        
                    <div>{this.props.carrinho ? (<Img src={require('../../Assets/carrinho.svg')} color="red"/> ):
                     (<Img src={require('../../Assets/carrinho.svg')} color="none" /> )}</div>
-       
+
                    <div>{this.props.profile ? (<Img src={require('../../Assets/perfil.svg')} style={{color:"red"}}/> ):
                     (<Img src={require('../../Assets/perfil.svg')} style={{color:"none"}}/> )} </div> 
 
@@ -56,4 +56,31 @@ class Footer extends Component {
     }   
  }
 
+export default Footer
+
  export default Footer
+ render() {
+    return (
+        <WrapperFooter>
+        <WrapperIcons>
+          <div>{this.props.showFooter ? (
+           
+               <div>{this.props.home ? ( <Img src={require('../../Assets/homepage.svg')} style={{color:none}}/> ) :
+                (<Img src={require('../../Assets/homepage.svg')} style={{color:red}}/> )}</div>
+   
+               <div>{this.props.carrinho ? (<Img src={require('../../Assets/carrinho.svg')} style={{color:none}}/> ):
+                (<Img src={require('../../Assets/carrinho.svg')} style={{color:red}}/> )}</div>
+   
+               <div>{this.props.profile ? (<Img src={require('../../Assets/pessoa.svg')} style={{color:none}}/> ):
+                (<Img src={require('../../Assets/pessoa.svg')} style={{color:red}}/> )} </div> 
+           
+              ) : ("")}</div>
+   
+        </WrapperIcons>
+   
+        </WrapperFooter>
+           )
+   
+       }
+    }
+
