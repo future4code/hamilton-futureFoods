@@ -25,7 +25,8 @@ class FeedPage extends Component {
         if (token === null) {
           this.props.goToLoginPage()
         }
-    
+
+      
         this.props.getAllRestaurants()
       }
 
@@ -136,3 +137,4 @@ const NavigationContainer = styled.div`
 const SearchContainer = styled.div`
     margin: 10px 16px;
 `
+

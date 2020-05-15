@@ -5,7 +5,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-
+import  moment from 'moment';
+import 'moment/locale/pt-br'
 
 
 class CardMyProfile extends React.Component {
@@ -14,28 +15,48 @@ class CardMyProfile extends React.Component {
         this.state = {
             
         }
-    }
+    }   
         
     render(){        
-
+        const { orderHistory } = this.props
+        console.log(orderHistory)
         return (            
             <Card >
+                <p>Histórico de pedidos: </p>
+                <p>{orderHistory && orderHistory.length === 1  ?
+                <p>Você não realizou nenhum pedido</p> : ""}</p>
+      
+            {orderHistory && orderHistory.length > 1 && orderHistory.map(order => {
+
+               return(
+                
                 <CardActionArea>
         
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Vinil Butantã
+                        {order.restaurantName}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {moment(order.createdAt).format("DD MMMM YYYY")}
                     </Typography>
 
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Frete grátis  
+                        <strong>SUBTOTAL: R${order.totalPrice}</strong>
                     </Typography>
                     </CardContent>
-                </CardActionArea>      
+                </CardActionArea>     
+                 )
+      
+                })} 
             </Card>
         );
     }
 }
 
+const mapStateToProps = state => ({
+    
+    orderHistory: state.feed.orderHistory
+               
+})
 
-export default connect(null,null)(CardMyProfile)
+export default connect(mapStateToProps,null)(CardMyProfile)

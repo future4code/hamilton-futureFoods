@@ -1,83 +1,95 @@
-// import React, {Component, Fragment} from "react"
-// import {connect} from 'react-redux';
-// import { push } from "connected-react-router";
-// import styled from 'styled-components'
+import React, {Component } from "react"
+import {connect} from 'react-redux';
+import { routes } from "../Router";
+import { push } from "connected-react-router";
+import { WrapperIcons, WrapperFooter, DivIcon} from './styled';
+import Divider from '@material-ui/core/Divider'
 
-// // const Tarefa = styled.li`
-// //   text-align: left;
-// //   text-decoration: ${({ completa }) => (completa ? "line-through" : "none")};
-// // `;
+class Footer extends Component {
+    constructor(props) {
+    super(props)
 
-//  const Img = styled.img `
-    
-//  `
- 
-//  const WrapperFooter = styled.div``
+    this.state = {
 
-//  const WrapperIcons = styled.div ``
+    }}
 
+ render() {
+     const { gotToFeed, goToMyProfile} = this.props
+     if (this.props.showFooter) {
+ return (
+     <WrapperFooter>
+          <Divider/>
+        <WrapperIcons>
 
-
-// class Footer extends Component {
-//     constructor(props) {
-//     super(props)
-
-//     this.state = {
-
-//     }}
-
-//  render() {
-//      if (this.props.showFooter) {
-
-     
-
-//  return (
-//      <WrapperFooter>
-//         <WrapperIcons>
+              
+            <DivIcon>
+                {this.props.home ?  (
+                    <img src={require('../../Assets/homepage.svg')} 
+                     alt="Home" 
+                     style={{color:"red"}}
+                     onCLick= {gotToFeed}
+                    /> 
+                 ) : (
+                    <img src={require('../../Assets/homepage.svg')} 
+                     style={{color:"none"}} 
+                     alt="Home"
+                     onCLick= {gotToFeed}
+                    /> )}
+            </DivIcon>
             
-//             <div>
+            
                    
-//                     <div>{this.props.home ? ( <Img src={require('../../Assets/homepage.svg')} style={{color:"red"}}/> ) :
-//                     (<Img src={require('../../Assets/homepage.svg')} style={{color:"none"}}/> )}</div>
+
        
-//                    <div>{this.props.carrinho ? (<Img src={require('../../Assets/carrinho.svg')} color="red"/> ):
-//                     (<Img src={require('../../Assets/carrinho.svg')} color="none" /> )}</div>
+             
+                                         
+         <DivIcon> 
+               {this.props.carrinho ? (
+                    <img src={require('../../Assets/carrinho.svg')} 
+                     color="red" 
+                     alt="carrinho"
+                     onCLick= {gotToMyProfile}
+                    /> 
+                ):(
+                    <img src={require('../../Assets/carrinho.svg')} 
+                     color="none"  
+                     alt="carrinho"
+                     onCLick= {gotToMyProfile}
+                    /> )}
+            </DivIcon>
+
+            <DivIcon>
+                {this.props.profile ? (
+                    <img src={require('../../Assets/perfil.svg')} 
+                     style={{color:"red"}} 
+                     alt="perfil"
+                    /> 
+                ):(
+                    <img src={require('../../Assets/perfil.svg')} 
+                     style={{color:"none"}} 
+                     alt="perfil"
+                    /> )} 
+            </DivIcon> 
+
+      
+        </WrapperIcons>
        
-//                    <div>{this.props.profile ? (<Img src={require('../../Assets/pessoa.svg')} style={{color:"red"}}/> ):
-//                     (<Img src={require('../../Assets/pessoa.svg')} style={{color:"none"}}/> )} </div> 
+     </WrapperFooter>
+        )
+    }
+    }   
+ }
+ const mapDispatchToProps = (dispatch) => ({
+    goToFeed: () => dispatch(push(routes.feedpage)),
+    goToMyProfile: () => dispatch(push(routes.myprofile))
 
-                
-//            </div>
+ })
 
-//         </WrapperIcons>
-//      </WrapperFooter>
-//         )
-//     }
-//     }   
-//  }
 
-//  export default Footer
-// //  render() {
-// //     return (
-// //         <WrapperFooter>
-// //         <WrapperIcons>
-// //           <div>{this.props.showFooter ? (
-           
-// //                <div>{this.props.home ? ( <Img src={require('../../Assets/homepage.svg')} style={{color:none}}/> ) :
-// //                 (<Img src={require('../../Assets/homepage.svg')} style={{color:red}}/> )}</div>
-   
-// //                <div>{this.props.carrinho ? (<Img src={require('../../Assets/carrinho.svg')} style={{color:none}}/> ):
-// //                 (<Img src={require('../../Assets/carrinho.svg')} style={{color:red}}/> )}</div>
-   
-// //                <div>{this.props.profile ? (<Img src={require('../../Assets/pessoa.svg')} style={{color:none}}/> ):
-// //                 (<Img src={require('../../Assets/pessoa.svg')} style={{color:red}}/> )} </div> 
-           
-// //               ) : ("")}</div>
-   
-// //         </WrapperIcons>
-   
-// //         </WrapperFooter>
-// //            )
-   
-// //        }
-// //     }
+
+export default connect(null,mapDispatchToProps)(Footer)
+
+
+
+        
+    

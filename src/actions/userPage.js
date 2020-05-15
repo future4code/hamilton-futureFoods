@@ -22,9 +22,10 @@ export const login = (email, password) => async(dispatch) => {
         const response = await axios.post(`${baseUrl}/login`, body)
         localStorage.setItem("token", response.data.token)
         window.localStorage.setItem("user", response.data.user)
+        console.log(response.data.user)
 
         if(response.data.user.hasAdress) {
-            dispatch(replace(routes.feedPage))
+            dispatch(replace(routes.feedpage))
         } else {
             dispatch(push(routes.myadress))
         }
@@ -87,19 +88,43 @@ export const getProfile = (token) => async (dispatch) => {
         const response = await axios.get(`${baseUrl}/profile`, 
     { headers: { auth: token }, }); 
     dispatch(setUserInfo(response.data.user)); } 
+
+export const getProfile = () => async (dispatch) => { 
+    
+    try { 
+        const token = localStorage.getItem('token')
+        const response = await axios.get(`${baseUrl}/profile`, 
+    { headers: { 'auth': token }, }); 
+    dispatch(setUserInfo(response.data.user));
+    console.log(response.data.user)} 
+    
     catch (err) { 
         console.log(err); 
     }};
   
     
-export const updateProfile = (form) => async (dispatch) => {
+export const updateProfile = (name, email,cpf) => async (dispatch) => {
     const token = localStorage.getItem("token")
+    const body = {
+        name,
+        email,
+        password,
+        cpf
+    }
     try {
-        const response = await axios.put(`${baseUrl}/profile`, form, {
+        const response = await axios.put(`${baseUrl}/profile`, body, {
         headers: { auth: token }
         
         } )
-    }catch (err) {
+        localStorage.setItem("token", response.data.token)
 
+        if(!response.data.user.hasAdress) {
+            dispatch(replace(routes.myadress))
+        } else {
+            dispatch(push(routes.feedpage))
+        }
+        window.alert("Perfil atualizado!")
+    }catch (err) {
+        window.alert("Perfil NÃO atualizado!")
     }
 }

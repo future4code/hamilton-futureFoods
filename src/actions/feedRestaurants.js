@@ -1,8 +1,6 @@
 import axios from "axios";
 
 const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/FourFoodA";
-const token = window.localStorage.getItem("token");
-
 
 //FUNÇÕES SINCRONAS
 
@@ -34,6 +32,7 @@ export const setOrderHistory = (orderHistory) => ({
 //FUNÇÕES ASSINCRONAS
 
 export const getAllRestaurants = () => async (dispatch) => {
+    const token = window.localStorage.getItem("token");
     const config = {
         headers: {
             'auth': token
@@ -50,6 +49,7 @@ export const getAllRestaurants = () => async (dispatch) => {
 }
 
 export const getRestaurantsDetails = (restaurantId) => async (dispatch) => {
+    const token = window.localStorage.getItem("token");
     const config = {
         headers: {
             'auth': token
@@ -65,16 +65,17 @@ export const getRestaurantsDetails = (restaurantId) => async (dispatch) => {
 }
 // Funções dos pedidos
 export const createNewOrder = (restaurantId, productArray) => async(dispatch) => {
+    const token = window.localStorage.getItem("token");
     const config = {
         headers: {
             'auth':token,
             
         }
     }
-    await axios.post(`${baseUrl}/restaurants/${restaurantId}/order`,
+    try {
+        await axios.post(`${baseUrl}/restaurants/${restaurantId}/order`,
      productArray , config)
 
-    try {
       //dispatch(getActiveOrder())
      
 
@@ -83,15 +84,15 @@ export const createNewOrder = (restaurantId, productArray) => async(dispatch) =>
 
  }}
 export const getActiveOrder = () => async (dispatch) => {
+    const token = window.localStorage.getItem("token");
     const config = {
         headers: {
             'auth':token,
            
         }
     }
-    const response = await axios.get (`${baseUrl}/active-order`, config)
-
     try {
+        const response = await axios.get (`${baseUrl}/active-order`, config)
         dispatch(setOrders(response.data.order))
     } catch(error) {
         console.log("Pedido não ativo")
@@ -99,18 +100,21 @@ export const getActiveOrder = () => async (dispatch) => {
     }
 }
 export const getOrderHistory = () => async(dispatch) => {
+    const token = window.localStorage.getItem("token");
     const config = {
         headers: {
-            'auth':token,
-            "Content-Type":"application/json"
+
+            'auth':token,  
         }
     }
-    const response = await axios.get(`${baseUrl}/orders/history`, config)
+    
     try { 
+        const response = await axios.get(`${baseUrl}/orders/history`, config)
         dispatch(setOrderHistory(response.data.orders))
+        console.log(response.data.orders)
 
     } catch(error) {
-        console.log("Não foi encontra")
+        console.log("Não foi encontrado")
 
     }
     

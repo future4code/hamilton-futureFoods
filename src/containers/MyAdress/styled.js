@@ -2,6 +2,7 @@ import styled from "styled-components"
 import TextField from "@material-ui/core/TextField";
 // import { Typography } from "@material-ui/core";
 
+
 export const WrapperAdress = styled.div `
     margin-bottom:50px;
     display:flex;
@@ -47,7 +48,7 @@ export const Text = styled.text `
 export const DivTitle = styled.div`
     width: 360px;
     height: 42px;
-    margin-top:80px;
+    margin-top:30px;
     text-align: center;
 
 `
