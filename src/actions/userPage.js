@@ -83,12 +83,14 @@ export const putAdress = (form) => async(dispatch) =>  {
 
  // importar para o arquivo profile.js
 export const getProfile = (token) => async (dispatch) => { 
-    try { const response = await axios.get(`${baseUrl}/profile`, 
+    try { 
+        const response = await axios.get(`${baseUrl}/profile`, 
     { headers: { auth: token }, }); 
     dispatch(setUserInfo(response.data.user)); } 
     catch (err) { 
         console.log(err); 
     }};
+  
     
 export const updateProfile = (form) => async (dispatch) => {
     const token = localStorage.getItem("token")
