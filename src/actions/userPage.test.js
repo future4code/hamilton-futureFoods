@@ -1,4 +1,4 @@
-import { setUserInfo, getProfile, singUp } from "./userPage";
+import { setUserInfo, getProfile, updateProfile } from "./userPage";
 import axios from "axios";
 describe("user", () => {
     test("setUserInfo", () => {
@@ -47,10 +47,34 @@ test("teste3", async () => {
         cpf: "000 603 005 69"
         }
     })
+    const mock =
+    {
+        name,
+        email,
+        cpf,
+        password
+    }
     const dispatch = jest.fn()
     await singUp(body)(dispatch)
     expect(dispatch).toBe(login)
 }
 )
+
+test("teste update", async () => {
+    axios.put = jest.fn(async()=>({
+        token: {
+        name,
+        email,
+        password,
+        cpf
+        }
+
+        }))
+    })
+        
+const dispatch = jest.fn()
+await updateProfile(token)(dispatch)
+expect(dispatch).toBe(token)
+
 
 });
