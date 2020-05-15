@@ -78,10 +78,6 @@ class Footer extends Component {
  })
 
 
-
 export default connect(null,mapDispatchToProps)(Footer)
 
 
-
-        
-    
