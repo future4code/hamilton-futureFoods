@@ -7,7 +7,7 @@ import Footer from '../Footer';
 import CardMyProfile from "../../components/CardMyProflile"
 import Edit from "../../Assets/edit.svg";
 import { WrapperProfile,
-         Title,
+         Text,
          Img } from './styled';
 
 import { getProfile } from "../../actions/userPage"
@@ -43,17 +43,19 @@ render(){
         
        <div>
          
-            <p><strong>{user && user.name}</strong></p>
-            <p><strong>{user && user.email}</strong></p>
-            <p><strong>{user && user.cpf}</strong></p>
-      </div>
+            <Text>{user && user.name} </Text>
+            <br/>
+            <Text>{user && user.email}</Text>
+            <br/>
+            <Text>{user && user.cpf}</Text>
             <Img src= {`${Edit}`} onClick = {goToEditUser}/>
-       
-        
+      </div>
+      
+
       <div>
         <p>Enderço cadastrado: </p>
-         <p><strong>{user && user.address}</strong></p> 
-        <Img src= {`${Edit}`} onClick = {goToMyAdress}/>
+         <p><strong>{user && user.address}<Img src= {`${Edit}`} onClick = {goToMyAdress}/></strong></p> 
+        
       </div>
         <CardMyProfile />
         <Footer showFooter={true} home={false} carrinho={false} profile={true} />

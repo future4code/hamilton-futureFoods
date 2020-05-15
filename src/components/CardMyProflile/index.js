@@ -5,7 +5,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-import * as moment from 'moment';
+import  moment from 'moment';
 import 'moment/locale/pt-br'
 
 
@@ -23,10 +23,10 @@ class CardMyProfile extends React.Component {
         return (            
             <Card >
                 <p>Histórico de pedidos: </p>
-                <p>{orderHistory.length === 0  ?
-                <strong>Você não realizou nenhum pedido</strong> : ""}</p>
+                <p>{orderHistory && orderHistory.length === 1  ?
+                <p>Você não realizou nenhum pedido</p> : ""}</p>
       
-            {orderHistory.length > 1 && orderHistory.map(order => {
+            {orderHistory && orderHistory.length > 1 && orderHistory.map(order => {
 
                return(
                 

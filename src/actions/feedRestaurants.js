@@ -2,8 +2,6 @@ import axios from "axios";
 
 const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/FourFoodA";
 
-
-
 //FUNÇÕES SINCRONAS
 
 export const setAllRestaurants = (allRestaurants) => ({
@@ -114,10 +112,10 @@ export const getOrderHistory = () => async(dispatch) => {
     try { 
         const response = await axios.get(`${baseUrl}/orders/history`, config)
         dispatch(setOrderHistory(response.data.orders))
-        
+        console.log(response.data.orders)
 
     } catch(error) {
-        console.log("Não foi encontra")
+        console.log("Não foi encontrado")
 
     }
     
