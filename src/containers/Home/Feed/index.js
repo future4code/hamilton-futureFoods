@@ -4,9 +4,7 @@ import { push } from "connected-react-router";
 import { routes } from "../../Router";
 import styled from "styled-components";
 import { getAllRestaurants, getRestaurantsDetails } from "../../../actions/feedRestaurants";
-import  ImgMediaCard  from "../../../components/Card";
 import SimpleHeaderNavigation from "../../../components/ScrollLateral";
-import LoadingRing from "../../../components/LoadingRing";
 import RestaurantsList from "../../restaurantsList/index";
 //MATERIAL-UI SEARCH
 import SearchBar from 'material-ui-search-bar'
@@ -42,12 +40,11 @@ class FeedPage extends Component {
 
     render() {
         const { searchInput } = this.state
-        const { allRestaurants } = this.props
-       
+               
         return (
             <div>
                 <TitleContainer>
-                    <Title>4Food</Title> 
+                    <Title>FourFood</Title> 
                 </TitleContainer>
 
                 <SearchContainer>
@@ -66,16 +63,10 @@ class FeedPage extends Component {
                     <SimpleHeaderNavigation/>
                 </NavigationContainer>
                 
-                {allRestaurants ? 
-                    <CardContainer>
-                        <RestaurantsList/>
-                    </CardContainer>
-                    :
-                    <CardContainer>
-                        <p>Carregando lista de restaurantes.</p>
-                        <LoadingRing/>
-                    </CardContainer>
-                }                
+                <CardContainer>
+                    <RestaurantsList/>
+                </CardContainer>
+                           
             </div>
         );
     }
