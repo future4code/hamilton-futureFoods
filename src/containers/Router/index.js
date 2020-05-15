@@ -10,6 +10,7 @@ import FeedPage from "../Home/Feed";
 import Profile from '../Profile';
 import UserEdit from '../UserEdit';
 import RestaurantDetails from "../RestaurantDetails";
+import Card from "../Card"
 
 export const routes = {
   root:"/",
@@ -19,6 +20,7 @@ export const routes = {
   myprofile:"/myprofile",
   useredit:"/useredit",
   restaurantDetails:"/restaurantDetails",
+  card: "/card",
 };
 
 function Router(props) {
@@ -32,6 +34,7 @@ function Router(props) {
         <Route exact path={routes.myprofile} component={Profile} />
         <Route exact path={routes.useredit} component={UserEdit} />
         <Route exact path={routes.restaurantDetails} component={RestaurantDetails} />
+        <Route exact path={routes.cart} component={Card} />
       </Switch>
    </ConnectedRouter>
   );

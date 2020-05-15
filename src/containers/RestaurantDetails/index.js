@@ -13,8 +13,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 
-
-
 class RestaurantDetails extends Component {
     constructor(props){
         super(props);
