@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
-import { getAllRestaurants, getRestaurantsDetails } from "../../actions/feedRestaurants";
+import { getAllRestaurants, getRestaurantDetails } from "../../actions/feedRestaurants";
 
 //MATERIAL-UI CARD
 import Card from '@material-ui/core/Card';
@@ -10,10 +11,11 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import Hamburguer from '../../Assets/hamburguer.jpg';
 
 
-class RestaurantsList extends Component {
+
+
+class RestaurantDetails extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -22,22 +24,23 @@ class RestaurantsList extends Component {
     }
 
 
-    handleOnClickRestaurantsDetails = (restaurantId) => {
-        console.log("Foi clicado o card")
+    handleOnClickRestaurantDetails = (restaurantId) => {
+        console.log("O produto foi clicado")
 
-        //this.props.getRestaurantsDetails(restaurantId);
+        this.props.getRestaurantsDetails(restaurantId);
         //localStorage.setItem('RestaurantId ', restaurantId)
         //this.props.goToRestaurantsDetailsPage();
     }
 
     render() {
-        const { allRestaurants } = this.props
+        const { restaurantDetails, allRestaurants} = this.props
         
         return(
             <Fragment>
-                {allRestaurants.map(restaurant => {
-                 return(
-                    
+                <TitleContainer>
+                    <Title>Restaurante</Title> 
+                </TitleContainer>
+
                     <Card 
                     key={restaurant.id}
                     onClick={this.handleOnClickRestaurantsDetails}
@@ -47,18 +50,23 @@ class RestaurantsList extends Component {
                             component="img"
                             alt="Hamburguer"
                             height="140"
-                            image={restaurant.logoUrl}
+                            image={allRestaurants.restaurant.logoUrl}
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    {restaurant.name}
-                                </Typography>
-    
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {restaurant.deliveryTime} min
+                                    {allRestaurants.restaurant.name}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    Frete R${restaurant.shipping}  
+                                    {allRestaurants.restaurant.category}
+                                </Typography>    
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {allRestaurants.restaurant.deliveryTime} min
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    Entrega R${allRestaurants.restaurant.shipping}  
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    {allRestaurants.restaurant.address}  
                                 </Typography>
                             </CardContent>
                         </CardActionArea>      
@@ -72,17 +80,29 @@ class RestaurantsList extends Component {
 
 const mapStateToProps = (state) => ({
     allRestaurants: state.feed.allRestaurants,
+    restaurantDetails: state.feed.restaurant,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getAllRestaurants: () => dispatch(getAllRestaurants()),
-    //getRestaurantsDetails: (restaurantId) => dispatch(getrestaurantsDetails(restaurantId)),
-    //goToRestaurantDetailsPage: () => dispatch(push(routes.restaurantDetails)), 
+    getRestaurantsDetails: (restaurantId) => dispatch(getrestaurantsDetails(restaurantId)),
+    goToRestaurantDetailPage: () => dispatch(push(routes.restaurantDetails)), 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsList)
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantDetails)
 
-
+const Title = styled.p`
+    width: 45px;
+    height: 19px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    color: #000000;
+`
 
 
 

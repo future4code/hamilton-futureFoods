@@ -1,10 +1,11 @@
 const initialState = {
     allRestaurants: [],
     selectedRestaurantId: "",
-    restaurantDetails: {},
+    restaurantDetails: [],
     order:[],
     orderHistory:[]
 
+}
 
 const feed = (state = initialState, action) => {
         switch(action.type) {
@@ -12,8 +13,8 @@ const feed = (state = initialState, action) => {
             const restaurantList = action.payload.allRestaurants;
             return {...state, allRestaurants: restaurantList};
         case 'SET_RESTAURANTS_DETAILS':
-            const restaurantsDetails = action.payload.restaurantsDetails;
-            return {...state, restaurantsDetails: restaurantsDetails};
+            const restaurantDetails = action.payload.restaurantDetails;
+            return {...state, restaurantsDetails: restaurantDetails};
         case 'SET_ORDER':
             const order = action.payload.order;
             return {...state, order:order};

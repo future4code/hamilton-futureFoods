@@ -5,8 +5,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-import * as moment from 'moment';
-import 'moment/locale/pt-br'
+//import  moment from 'moment';
+//import 'moment/locale/pt-br'
 
 
 class CardMyProfile extends React.Component {
@@ -37,7 +37,7 @@ class CardMyProfile extends React.Component {
                         {order.restaurantName}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {moment(order.createdAt).format("DD MMMM YYYY")}
+                        {/* {moment(order.createdAt).format("DD MMMM YYYY")} */}
                     </Typography>
 
                     <Typography variant="body2" color="textSecondary" component="p">
