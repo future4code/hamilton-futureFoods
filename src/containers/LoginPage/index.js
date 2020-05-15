@@ -24,7 +24,7 @@ const FormLogin = [
         title:"Digite no mínimo 6 caracteres",
         required:true,
         pattern:"[A-Za-z0-9]{6,10}"
-        
+            
 
 
     }

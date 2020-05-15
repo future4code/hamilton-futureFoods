@@ -4,13 +4,14 @@ import {replace, push} from "connected-react-router";
 
 
 const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/FourFoodA"
-const loginUser = (login) => {
-    return {
-    type: "LOGIN_USER",
-    payload:{login}
-    }
-    
-}
+
+// importar para o arquivo profile.js
+export const setUserInfo = (info) => { 
+    return { type: "SET_USER_INFO", 
+    payload: { info }, 
+  };
+};
+
 
 export const login = (email, password) => async(dispatch) => {
     const body = {
@@ -21,9 +22,10 @@ export const login = (email, password) => async(dispatch) => {
         const response = await axios.post(`${baseUrl}/login`, body)
         localStorage.setItem("token", response.data.token)
         window.localStorage.setItem("user", response.data.user)
+        console.log(response.data.user)
 
         if(response.data.user.hasAdress) {
-            dispatch(replace(routes.feedPage))
+            dispatch(replace(routes.feedpage))
         } else {
             dispatch(push(routes.myadress))
         }
@@ -53,26 +55,76 @@ export const singUp = (name, email, password, cpf) => async (dispatch) => {
      }
 }
 
+// erro 400 - não autorizado
 export const putAdress = (form) => async(dispatch) =>  {
-    const token = window.localStorage.getItem ("token")
-    const body = {
-        form
-    }
-    try {
-        const response = await axios.put (`${baseUrl}/adress`, body, {
-            headers: {
-                "auth": token,
-             "Content-Type":"application/json"
+    const token = localStorage.getItem ("token")
 
+    try {
+        const response = await axios.put(`${baseUrl}/address`, form, {
+            headers: {
+                
+                'auth': token,
+               
             }
+            
         })
-    // Guardar token e dados do user ????
-    window.localStorage.setItem("token", response.data.token)
-    // Não sei se precisa
-    window.localStorage.setItem("user", response.data.user)
-    dispatch(routes.feedpage)
+
+    localStorage.setItem("token", response.data.token)
+    dispatch(push(routes.feedpage))
+
+    console.log("deu certo")
+    console.log(form)
+
     } catch (error) {
         alert("Erro")
-        dispatch(routes.myadress)
+        console.log(form)
+        // dispatch(routes.myadress)
+    }
+}
+
+ // importar para o arquivo profile.js
+export const getProfile = (token) => async (dispatch) => { 
+    try { 
+        const response = await axios.get(`${baseUrl}/profile`, 
+    { headers: { auth: token }, }); 
+    dispatch(setUserInfo(response.data.user)); } 
+
+export const getProfile = () => async (dispatch) => { 
+    
+    try { 
+        const token = localStorage.getItem('token')
+        const response = await axios.get(`${baseUrl}/profile`, 
+    { headers: { 'auth': token }, }); 
+    dispatch(setUserInfo(response.data.user));
+    console.log(response.data.user)} 
+    
+    catch (err) { 
+        console.log(err); 
+    }};
+  
+    
+export const updateProfile = (name, email,cpf) => async (dispatch) => {
+    const token = localStorage.getItem("token")
+    const body = {
+        name,
+        email,
+        password,
+        cpf
+    }
+    try {
+        const response = await axios.put(`${baseUrl}/profile`, body, {
+        headers: { auth: token }
+        
+        } )
+        localStorage.setItem("token", response.data.token)
+
+        if(!response.data.user.hasAdress) {
+            dispatch(replace(routes.myadress))
+        } else {
+            dispatch(push(routes.feedpage))
+        }
+        window.alert("Perfil atualizado!")
+    }catch (err) {
+        window.alert("Perfil NÃO atualizado!")
     }
 }

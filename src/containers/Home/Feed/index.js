@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-//import { connect } from "react-redux";
-//import { push } from "connected-react-router";
+import { connect } from "react-redux";
+import { push } from "connected-react-router";
 import { routes } from "../../Router";
 import styled from "styled-components";
-//importar as actions
+import { getAllRestaurants, getRestaurantsDetails } from "../../../actions/feedRestaurants";
 import  ImgMediaCard  from "../../../components/Card";
 import SimpleHeaderNavigation from "../../../components/ScrollLateral";
-
+import LoadingRing from "../../../components/LoadingRing";
+import RestaurantsList from "../../restaurantsList/index";
 //MATERIAL-UI SEARCH
 import SearchBar from 'material-ui-search-bar'
-
 
 
 class FeedPage extends Component {
@@ -20,68 +20,81 @@ class FeedPage extends Component {
         };
     }
 
+    componentDidMount(){
+        const token = window.localStorage.getItem("token")
+        if (token === null) {
+          this.props.goToLoginPage()
+        }
+
+      
+        this.props.getAllRestaurants()
+      }
+
     handleInputChange = (event) => {
         this.setState({
           [event.target.name]: event.target.value
         });
-      };
+    };
+
+    
 
 
 
     render() {
-      
+        const { searchInput } = this.state
+        const { allRestaurants } = this.props
        
         return (
-            <FeedContainer>
+            <div>
                 <TitleContainer>
                     <Title>4Food</Title> 
                 </TitleContainer>
-                <SearchBar
-                onChange={this.handleInputChange}  
-                hintText="Restaurantes"              
-                style={{
-                    margin: '0 auto',
-                    maxWidth: 800
-                }}
-                />
+
+                <SearchContainer>
+                    <SearchBar
+                    value={searchInput}
+                    onChange={this.handleInputChange}  
+                    hintText="Restaurantes"              
+                    style={{
+                        margin: '0 auto',
+                        maxWidth: 800
+                    }}
+                    />
+                </SearchContainer>
+                
                 <NavigationContainer>
                     <SimpleHeaderNavigation/>
                 </NavigationContainer>
                 
-                                
-                <CardContainer>
-                    <ImgMediaCard />                                 
-                </CardContainer>
-                <CardContainer>
-                    <ImgMediaCard />                                 
-                </CardContainer>
-                <CardContainer>
-                    <ImgMediaCard />                                 
-                </CardContainer>
-
-               
-            </FeedContainer>
+                {allRestaurants ? 
+                    <CardContainer>
+                        <RestaurantsList/>
+                    </CardContainer>
+                    :
+                    <CardContainer>
+                        <p>Carregando lista de restaurantes.</p>
+                        <LoadingRing/>
+                    </CardContainer>
+                }                
+            </div>
         );
     }
 }
 
-// const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
     
-// });
+});
 
-// const mapDispatchToProps = (dispatch) => {
-//     return{
-
-//     }
-// };
-
-
-export default FeedPage;
+const mapDispatchToProps = (dispatch) => ({
+        goToLoginPage: () => dispatch(push(routes.root)),
+        getAllRestaurants: () => dispatch(getAllRestaurants()),
+});
 
 
-const FeedContainer = styled.div`
-    
-`
+export default connect(mapStateToProps, mapDispatchToProps)(FeedPage);
+
+
+
 const Title = styled.p`
     width: 45px;
     height: 19px;
@@ -98,7 +111,7 @@ const TitleContainer = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    align-itens: center;
+    align-items: center;
     justify-content: center;
     margin-bottom: 20px;
     -webkit-backdrop-filter: blur(10px);
@@ -113,23 +126,15 @@ const CardContainer = styled.div`
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
 `
-const SearchContainer = styled.div`
-    width: 328px;
-    height: 56px;
-    border-radius: 2px;
-    border: solid 1px #b8b8b8;    
-`
 const NavigationContainer = styled.div`
     width: 360px;
-    height: 42px;
-    margin: 10px;   
+    height: 42px; 
+    margin: 10px 0px;
+    dipĺay: flex;
+    align-itens: center;
+    justify-content: center;  
 `
-const BottomNavigationContainer = styled.div`
-    height: 49px;
-    width: 360px;
-    
+const SearchContainer = styled.div`
+    margin: 10px 16px;
 `
-
-
-
 

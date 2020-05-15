@@ -2,8 +2,7 @@ import React, {Component} from "react"
 import { connect } from"react-redux"
 import {bindActionCreators} from "redux";
 import * as todoAction from "../../actions/userPage";
-import { routes } from "../Router";
-import {Button, Div, Input} from './styled';
+import { Button, Div, Input} from './styled'
 
 const FormSignUp = [
     {
@@ -34,26 +33,6 @@ const FormSignUp = [
         required:true,
         title: "Campo obrigatório",
         pattern:"[a-z0-9_.+-%]+@[a-z0-9.-]+\.[a-z]{3,}$" 
-    },
-    {
-        name:"password",
-        type:"password",
-        placeholder:"Mínimo 6 caracteres",
-        label:"Senha",
-        title:"Digite no mínimo 6 caracteres",
-        required:true,
-        pattern:"[A-Za-z0-9]{6,10}",
-        
-    },
-    {
-        name:"confirmPassword",
-        type:"password",
-        placeholder:"Confirme a senha anterior",
-        label:"Senha",
-        title:"Digite no mínimo 6 caracteres",
-        required:true,
-        pattern:"[A-Za-z0-9]{6,10}",
-        
     }
 ]
 class SignUpPage extends Component {
@@ -64,6 +43,16 @@ class SignUpPage extends Component {
 
         }
     }
+componentDidMount = () => {
+    const token = window.localStorage.getItem('token')
+    
+    this.props.updateProfile()
+
+    if(token === null || !token) {
+    this.props.goToLogin()
+
+    }
+}
 handleOnChangeForm = event => {
     const { name, value } = event.target;
     this.setState({form: {...this.state.form, [name]:value}})
@@ -71,22 +60,21 @@ handleOnChangeForm = event => {
 handleOnSubmit = event => {
     event.preventDefault()
     const {form} = this.state
+    const user = this. props
 
-    if(form.password !== form.confirmPassword){
-        alert("Senhas divergentes. Tente novamente")
+    if(form.cpf !== user.cpf){
+        this.props.updateProfile(form.name, form.email, form.cpf)
         
     }else{
-        this.props.singUp(form.name, form.email, form.password, form.cpf)
+        alert("Usuário já cadastrado!")
     }
 }
 
 render() {
     return(
         <Div>
-
-            {/* <img src={Logo}/> */}
-                
-<form onSubmit={this.handleOnSubmit}>
+            <BackButton header={"Editar"}/>
+            <form onSubmit={this.handleOnSubmit}>
                {FormSignUp.map(info => {
                    return (
                        <div key={info.name}>
@@ -99,23 +87,27 @@ render() {
                                onChange={this.handleOnChangeForm}
                                pattern={info.pattern}
                                title={info.title}
-                                label={info.label}
-                                variant="outlined" 
-                                InputLabelProps = {{shrink:true}} 
+                               label={info.label}
+                               variant="outlined" 
+                               InputLabelProps = {{shrink:true}}
                                 />
                        </div>)
                })}
-               <Button type="submit">Entrar</Button>
+               <Button type="submit">Salvar</Button>
            </form>
         </Div>
         )
     }       
 }
 
+const mapStateToProps = state => ({
+  
+    user: state.user.userInfo             
+})
 
 const mapDispatchToProps = (dispatch) =>
 bindActionCreators(todoAction,dispatch)
 
 
 
-export default connect(null,mapDispatchToProps)(SignUpPage)
+export default connect(mapStateToProps,mapDispatchToProps)(SignUpPage)
