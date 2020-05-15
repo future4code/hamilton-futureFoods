@@ -4,7 +4,7 @@ const initialState = {
     restaurantDetails: {},
     order:[],
     orderHistory:[]
-
+}
 
 const feed = (state = initialState, action) => {
         switch(action.type) {

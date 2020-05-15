@@ -9,14 +9,17 @@ import MyAdress from "../MyAdress"
 import FeedPage from "../Home/Feed";
 import Profile from '../Profile'
 import UserEdit from '../UserEdit'
+import SplashScreen from "../SplashScreen";
 
 export const routes = {
-  root:"/",
+
+  root:"/login",
   signup:"/signup",
   feedpage: "/feed", 
   myadress:"/myadress",
   myprofile:"/myprofile",
-  useredit:"/useredit"
+  useredit:"/useredit",
+  splashscreen:"/"
 
 };
 
@@ -30,6 +33,7 @@ function Router(props) {
         <Route exact path={routes.myadress} component={MyAdress} />
         <Route exact path={routes.myprofile} component={Profile} />
         <Route exact path={routes.useredit} component={UserEdit} />
+        <Route exact path={routes.splashscreen} component={SplashScreen} />
       </Switch>
    </ConnectedRouter>
   );

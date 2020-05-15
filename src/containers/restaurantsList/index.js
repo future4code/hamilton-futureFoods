@@ -4,7 +4,7 @@ import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
 import { getAllRestaurants, getRestaurantsDetails } from "../../actions/feedRestaurants";
 
-MATERIAL-UI CARD
+//MATERIAL-UI CARD
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
