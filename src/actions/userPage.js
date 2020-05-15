@@ -12,7 +12,6 @@ export const setUserInfo = (info) => {
   };
 };
 
-
 export const login = (email, password) => async(dispatch) => {
     const body = {
         email,
@@ -24,20 +23,23 @@ export const login = (email, password) => async(dispatch) => {
         window.localStorage.setItem("user", response.data.user)
         console.log(response.data.user)
 
-        if(response.data.user.hasAdress) {
+        if(response.data.user.hasAddress  ) {
             dispatch(replace(routes.feedpage))
         } else {
             dispatch(push(routes.myadress))
         }
-        window.alert("logado!")
-
-        // dispatch(loginUser())
     } catch(error){
         window.alert("Usuário não encontrado!")
         console.log(email,password)
     }
 }
-
+export const redirectSignUp = () => async(dispatch) => {
+    try {
+        dispatch(push(routes.signup))
+    } catch {
+        alert("Ocorreu um erro inesperado. Tente novamente")
+    }
+}
 export const singUp = (name, email, password, cpf) => async (dispatch) => {
     const body = {
         name,
@@ -103,28 +105,30 @@ export const getProfile = () => async (dispatch) => {
     }};
   
     
-export const updateProfile = (name, email,cpf) => async (dispatch) => {
+export const updateProfile = (name, email, cpf) => async (dispatch) => {
     const token = localStorage.getItem("token")
     const body = {
         name,
         email,
-        password,
         cpf
     }
     try {
+        
         const response = await axios.put(`${baseUrl}/profile`, body, {
         headers: { auth: token }
         
-        } )
+        })
         localStorage.setItem("token", response.data.token)
-
+        window.localStorage.setItem("user", response.data.user)
+        dispatch(getProfile());
+        console.log(name, email, cpf)
         if(!response.data.user.hasAdress) {
-            dispatch(replace(routes.myadress))
+            dispatch(push(routes.myadress))
         } else {
-            dispatch(push(routes.feedpage))
+            dispatch(push(routes.myprofile))
         }
         window.alert("Perfil atualizado!")
-    }catch (err) {
-        window.alert("Perfil NÃO atualizado!")
+    } catch (err) {
+        window.alert("ERRO!!!")
     }
 }

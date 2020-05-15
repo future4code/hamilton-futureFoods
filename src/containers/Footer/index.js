@@ -35,29 +35,21 @@ class Footer extends Component {
                      alt="Home"
                      onCLick= {gotToFeed}
                     /> )}
-            </DivIcon>
-            
-            
-                   
-
-       
-             
-                                         
-         <DivIcon> 
+            </DivIcon>                       
+            <DivIcon> 
                {this.props.carrinho ? (
                     <img src={require('../../Assets/carrinho.svg')} 
                      color="red" 
                      alt="carrinho"
-                     onCLick= {gotToMyProfile}
+                     onCLick= {goToMyProfile}
                     /> 
                 ):(
                     <img src={require('../../Assets/carrinho.svg')} 
                      color="none"  
                      alt="carrinho"
-                     onCLick= {gotToMyProfile}
+                     onCLick= {goToMyProfile}
                     /> )}
             </DivIcon>
-
             <DivIcon>
                 {this.props.profile ? (
                     <img src={require('../../Assets/perfil.svg')} 
