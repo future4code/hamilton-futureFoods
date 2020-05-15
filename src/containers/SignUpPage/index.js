@@ -3,35 +3,7 @@ import { connect } from"react-redux"
 import {bindActionCreators} from "redux";
 import * as todoAction from "../../actions/userPage";
 import { routes } from "../Router";
-import styled from "styled-components"
-import TextField from '@material-ui/core/TextField';
-// import Logo from "../style/logo-future.png";
-
-const Input =  styled(TextField)`
-  width: 328px;
-  /* height:56px; */
-  border-radius: 2px;
-  margin: 8px 16px;
-  gap: 8px;
-`
-const Div = styled.div`
-/* width: 360px;
-margin: 0 auto;
-display: flex;
-flex-direction: column;
-height: 640px; */
-margin-bottom:50px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:flex-start; 
-`
-const Button = styled.button`
-width: 328px;
-height: 42px;
-border-radius: 2px;
-background-color:#e8222e;
-`
+import {Button, Div, Input} from './styled';
 
 const FormSignUp = [
     {

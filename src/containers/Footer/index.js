@@ -1,22 +1,9 @@
-import React, {Component, Fragment} from "react"
+import React, {Component } from "react"
 import {connect} from 'react-redux';
+import { routes } from "../Router";
 import { push } from "connected-react-router";
-import styled from 'styled-components'
-
-// const Tarefa = styled.li`
-//   text-align: left;
-//   text-decoration: ${({ completa }) => (completa ? "line-through" : "none")};
-// `;
-
- const Img = styled.img `
-    
- `
- 
- const WrapperFooter = styled.div``
-
- const WrapperIcons = styled.div ``
-
-
+import { WrapperIcons, WrapperFooter, DivIcon} from './styled';
+import Divider from '@material-ui/core/Divider'
 
 class Footer extends Component {
     constructor(props) {
@@ -27,60 +14,82 @@ class Footer extends Component {
     }}
 
  render() {
+     const { gotToFeed, goToMyProfile} = this.props
      if (this.props.showFooter) {
-
-     
-
  return (
      <WrapperFooter>
+          <Divider/>
         <WrapperIcons>
+
+              
+            <DivIcon>
+                {this.props.home ?  (
+                    <img src={require('../../Assets/homepage.svg')} 
+                     alt="Home" 
+                     style={{color:"red"}}
+                     onCLick= {gotToFeed}
+                    /> 
+                 ) : (
+                    <img src={require('../../Assets/homepage.svg')} 
+                     style={{color:"none"}} 
+                     alt="Home"
+                     onCLick= {gotToFeed}
+                    /> )}
+            </DivIcon>
             
-            <div>
+            
                    
-                    <div>{this.props.home ? ( <Img src={require('../../Assets/homepage.svg')} style={{color:"red"}}/> ) :
-                    (<Img src={require('../../Assets/homepage.svg')} style={{color:"none"}}/> )}</div>
+
        
-                   <div>{this.props.carrinho ? (<Img src={require('../../Assets/carrinho.svg')} color="red"/> ):
-                    (<Img src={require('../../Assets/carrinho.svg')} color="none" /> )}</div>
+             
+                                         
+         <DivIcon> 
+               {this.props.carrinho ? (
+                    <img src={require('../../Assets/carrinho.svg')} 
+                     color="red" 
+                     alt="carrinho"
+                     onCLick= {gotToMyProfile}
+                    /> 
+                ):(
+                    <img src={require('../../Assets/carrinho.svg')} 
+                     color="none"  
+                     alt="carrinho"
+                     onCLick= {gotToMyProfile}
+                    /> )}
+            </DivIcon>
 
-                   <div>{this.props.profile ? (<Img src={require('../../Assets/perfil.svg')} style={{color:"red"}}/> ):
-                    (<Img src={require('../../Assets/perfil.svg')} style={{color:"none"}}/> )} </div> 
+            <DivIcon>
+                {this.props.profile ? (
+                    <img src={require('../../Assets/perfil.svg')} 
+                     style={{color:"red"}} 
+                     alt="perfil"
+                    /> 
+                ):(
+                    <img src={require('../../Assets/perfil.svg')} 
+                     style={{color:"none"}} 
+                     alt="perfil"
+                    /> )} 
+            </DivIcon> 
 
-                
-           </div>
-
+      
         </WrapperIcons>
+       
      </WrapperFooter>
         )
     }
     }   
  }
+ const mapDispatchToProps = (dispatch) => ({
+    goToFeed: () => dispatch(push(routes.feedpage)),
+    goToMyProfile: () => dispatch(push(routes.myprofile))
 
-export default Footer
+ })
 
- export default Footer
- render() {
-    return (
-        <WrapperFooter>
-        <WrapperIcons>
-          <div>{this.props.showFooter ? (
-           
-               <div>{this.props.home ? ( <Img src={require('../../Assets/homepage.svg')} style={{color:none}}/> ) :
-                (<Img src={require('../../Assets/homepage.svg')} style={{color:red}}/> )}</div>
-   
-               <div>{this.props.carrinho ? (<Img src={require('../../Assets/carrinho.svg')} style={{color:none}}/> ):
-                (<Img src={require('../../Assets/carrinho.svg')} style={{color:red}}/> )}</div>
-   
-               <div>{this.props.profile ? (<Img src={require('../../Assets/pessoa.svg')} style={{color:none}}/> ):
-                (<Img src={require('../../Assets/pessoa.svg')} style={{color:red}}/> )} </div> 
-           
-              ) : ("")}</div>
-   
-        </WrapperIcons>
-   
-        </WrapperFooter>
-           )
-   
-       }
-    }
 
+
+export default connect(null,mapDispatchToProps)(Footer)
+
+
+
+        
+    
