@@ -20,6 +20,7 @@ class Footer extends Component {
      <WrapperFooter>
           <Divider/>
         <WrapperIcons>
+
               
             <DivIcon>
                 {this.props.home ?  (
@@ -35,8 +36,14 @@ class Footer extends Component {
                      onCLick= {gotToFeed}
                     /> )}
             </DivIcon>
+            
+            
+                   
 
-            <DivIcon> 
+       
+             
+                                         
+         <DivIcon> 
                {this.props.carrinho ? (
                     <img src={require('../../Assets/carrinho.svg')} 
                      color="red" 
@@ -80,4 +87,9 @@ class Footer extends Component {
 
 
 
- export default connect(null,mapDispatchToProps)(Footer)
+export default connect(null,mapDispatchToProps)(Footer)
+
+
+
+        
+    

@@ -10,8 +10,6 @@ export const setAllRestaurants = (allRestaurants) => ({
         allRestaurants,
     }
 })
-
-
 export const setRestaurantsDetails = (restaurantsDetails) => ({
     type: 'SET_RESTAURANTS_DETAILS',
     payload: {
@@ -43,7 +41,8 @@ export const getAllRestaurants = () => async (dispatch) => {
     try{
         const response = await axios.get(`${baseUrl}/restaurants`,
         config)
-        dispatch(setAllRestaurants(response.data))
+        dispatch(setAllRestaurants(response.data.restaurants))
+        console.log(response.data.restaurants)
     }catch(error){
         console.log(error)
     }

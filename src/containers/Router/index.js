@@ -25,13 +25,13 @@ function Router(props) {
     <ConnectedRouter history={props.history}>
       <Switch>
         <Route exact path={routes.root} component={LoginPage} /> 
-        <Route exact path={routes.signup} component={SignUpPage} />
+        <Route exact path={routes.signup} component={SignUpPage} /> 
         <Route exact path={routes.feedpage} component={FeedPage} />
         <Route exact path={routes.myadress} component={MyAdress} />
         <Route exact path={routes.myprofile} component={Profile} />
         <Route exact path={routes.useredit} component={UserEdit} />
       </Switch>
-    </ConnectedRouter>
+   </ConnectedRouter>
   );
 }
 
