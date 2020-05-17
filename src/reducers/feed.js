@@ -14,7 +14,7 @@ const feed = (state = initialState, action) => {
             return {...state, allRestaurants: restaurantList};
         case 'SET_RESTAURANTS_DETAILS':
             const restaurantDetails = action.payload.restaurantDetails;
-            return {...state, restaurantsDetails: restaurantDetails};
+            return {...state, restaurantDetails: restaurantDetails};
         case 'SET_ORDER':
             const order = action.payload.order;
             return {...state, order:order};

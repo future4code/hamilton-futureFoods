@@ -40,31 +40,31 @@ class RestaurantDetails extends Component {
                 </TitleContainer>
 
                     <Card 
-                    key={restaurant.id}
-                    onClick={this.handleOnClickRestaurantsDetails}
+                    key={restaurantDetails.restaurant.id}
+                    onClick={this.handleOnClickRestaurantDetails}
                     >
                         <CardActionArea>
                             <CardMedia
                             component="img"
                             alt="Hamburguer"
                             height="140"
-                            image={allRestaurants.restaurant.logoUrl}
+                            image={restaurantDetails.restaurant.logoUrl}
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    {allRestaurants.restaurant.name}
+                                    {restaurantDetails.restaurant.name}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {allRestaurants.restaurant.category}
+                                    {restaurantDetails.restaurant.category}
                                 </Typography>    
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {allRestaurants.restaurant.deliveryTime} min
+                                    {restaurantDetails.restaurant.deliveryTime} min
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    Entrega R${allRestaurants.restaurant.shipping}  
+                                    Entrega R${restaurantDetails.restaurant.shipping}  
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {allRestaurants.restaurant.address}  
+                                    {restaurantDetails.restaurant.address}  
                                 </Typography>
                             </CardContent>
                         </CardActionArea>      
@@ -101,7 +101,18 @@ const Title = styled.p`
     letter-spacing: -0.39px;
     color: #000000;
 `
-
+const TitleContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+`
 
 
 

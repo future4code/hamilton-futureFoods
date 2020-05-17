@@ -19,7 +19,7 @@ export const routes = {
   myadress:"/myadress",
   myprofile:"/myprofile",
   useredit:"/useredit",
-  restaurantDetails:"/restaurantDetails",
+  restaurantDetails:"/",
   card: "/card",
 };
 
@@ -27,12 +27,12 @@ function Router(props) {
   return (
     <ConnectedRouter history={props.history}>
       <Switch>
-        <Route exact path={routes.root} component={LoginPage} /> 
+        {/* <Route exact path={routes.root} component={LoginPage} /> 
         <Route exact path={routes.signup} component={SignUpPage} /> 
         <Route exact path={routes.feedpage} component={FeedPage} />
         <Route exact path={routes.myadress} component={MyAdress} />
         <Route exact path={routes.myprofile} component={Profile} />
-        <Route exact path={routes.useredit} component={UserEdit} />
+        <Route exact path={routes.useredit} component={UserEdit} /> */}
         <Route exact path={routes.restaurantDetails} component={RestaurantDetails} />
         <Route exact path={routes.cart} component={Card} />
       </Switch>
