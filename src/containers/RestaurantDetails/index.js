@@ -76,7 +76,7 @@ class RestaurantDetails extends Component {
                         <Title>Principais</Title> 
                     </TitleContainer>
                     <Card>
-                        {/* <ProductsList />  */}
+                        <ProductsList /> 
                     </Card> 
 
             </Fragment>            
@@ -122,6 +122,7 @@ const TitleContainer = styled.div`
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
 `
+
 
 
 

@@ -1,7 +1,7 @@
 const initialState = {
     allRestaurants: [],
     selectedRestaurantId: "",
-    restaurantDetails: [],
+    restaurantDetails: {},
     order:[],
     orderHistory:[]
 }

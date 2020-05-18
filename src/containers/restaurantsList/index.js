@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
 import { getAllRestaurants, getRestaurantDetails } from "../../actions/feedRestaurants";
-
+import styled from "styled-components";
 //MATERIAL-UI CARD
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -36,32 +36,34 @@ class RestaurantsList extends Component {
             <Fragment>
                 {allRestaurants.map(restaurant => {
                  return(
+                    <CardContainer>
+                        <Card 
+                        key={restaurant.id}
+                        onClick={() => this.handleOnClickRestaurantDetails(restaurant.id)}
+                        >
+                            <CardActionArea>
+                                <CardMedia
+                                component="img"
+                                alt="Hamburguer"
+                                height="140"
+                                image={restaurant.logoUrl}
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {restaurant.name}
+                                    </Typography>
+        
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {restaurant.deliveryTime} min
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        Frete R${restaurant.shipping}  
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>      
+                        </Card>
+                    </CardContainer>
                     
-                    <Card 
-                    key={restaurant.id}
-                    onClick={() => this.handleOnClickRestaurantDetails(restaurant.id)}
-                    >
-                        <CardActionArea>
-                            <CardMedia
-                            component="img"
-                            alt="Hamburguer"
-                            height="140"
-                            image={restaurant.logoUrl}
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {restaurant.name}
-                                </Typography>
-    
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {restaurant.deliveryTime} min
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    Frete R${restaurant.shipping}  
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>      
-                    </Card>
                  )
                 })}                           
             </Fragment>            
@@ -82,7 +84,13 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsList)
 
-
+const CardContainer = styled.div`
+    margin: 15px 16px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+`
 
 
 

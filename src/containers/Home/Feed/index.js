@@ -61,9 +61,9 @@ class FeedPage extends Component {
                     <SimpleHeaderNavigation/>
                 </NavigationContainer>
                 
-                <CardContainer>
+                <div>
                     <RestaurantsList/>
-                </CardContainer>
+                </div>
                            
             </div>
         );
@@ -108,13 +108,7 @@ const TitleContainer = styled.div`
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
 `
-const CardContainer = styled.div`
-    margin: 10px 16px;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
-    background-color: #ffffff;
-`
+
 const NavigationContainer = styled.div`
     width: 360px;
     height: 42px; 
