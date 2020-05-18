@@ -3,8 +3,12 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
 import { getRestaurantDetails } from "../../actions/feedRestaurants";
-
-
+//MATERIAL-UI CARD
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 
 
 class ProductsList extends Component {
@@ -27,25 +31,32 @@ class ProductsList extends Component {
         
         return(
             <div>
-                {restaurantDetails.products.map(product => {
+                {restaurantDetails.products ? restaurantDetails.products.map(product => {
                     return(
-                        <div 
-                        key={product.id}                        
+                        <Card 
+                        key={product.id}                    
                         >
-                            <div>
-                                <img src={product.photoUrl}/>
-                            </div>
-                            <div>
-                                <p>{product.name}</p>
-                                <p>{product.description}</p>
-                                <p>{product.price}</p>
-                            </div>                            
-                            <div>
-                                <button onClick={this.handleOnClicBuyProduct}>Adicionar</button>
-                            </div> 
-                        </div>  
+                            <CardActionArea>
+                                <CardMedia
+                                component="img"
+                                height="140"
+                                image={product.photoUrl}
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {product.name} 
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {product.description} 
+                                    </Typography>    
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                       R${product.price}  
+                                    </Typography>                                    
+                                </CardContent>
+                            </CardActionArea>      
+                        </Card>                          
                     )
-                })}                                     
+                }) : <p>O restaurante não tem produtos cadastrados</p>}                                     
             </div>            
         );
     }

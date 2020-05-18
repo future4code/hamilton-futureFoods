@@ -76,7 +76,7 @@ class RestaurantDetails extends Component {
                         <Title>Principais</Title> 
                     </TitleContainer>
                     <Card>
-                        {/* <ProductsList />  */}
+                        <ProductsList /> 
                     </Card> 
 
             </Fragment>            
