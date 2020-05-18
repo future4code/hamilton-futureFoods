@@ -5,7 +5,7 @@ import {replace, push} from "connected-react-router";
 
 const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/FourFoodA"
 
-// importar para o arquivo profile.js
+
 export const setUserInfo = (info) => { 
     return { type: "SET_USER_INFO", 
     payload: { info }, 
@@ -21,8 +21,7 @@ export const login = (email, password) => async(dispatch) => {
         const response = await axios.post(`${baseUrl}/login`, body)
         localStorage.setItem("token", response.data.token)
         window.localStorage.setItem("user", response.data.user)
-        console.log(response.data.user)
-
+        
         if(response.data.user.hasAddress  ) {
             dispatch(replace(routes.feedpage))
         } else {
@@ -57,30 +56,23 @@ export const singUp = (name, email, password, cpf) => async (dispatch) => {
      }
 }
 
-// erro 400 - não autorizado
+
 export const putAdress = (form) => async(dispatch) =>  {
     const token = localStorage.getItem ("token")
 
     try {
         const response = await axios.put(`${baseUrl}/address`, form, {
-            headers: {
-                
-                'auth': token,
-               
-            }
-            
+            headers: {                
+                'auth': token,               
+            }            
         })
 
     localStorage.setItem("token", response.data.token)
-    dispatch(push(routes.feedpage))
-
-    console.log("deu certo")
-    console.log(form)
+    dispatch(push(routes.feedpage))    
 
     } catch (error) {
-        alert("Erro")
-        console.log(form)
-        // dispatch(routes.myadress)
+        alert("Ocorreu um erro inesperado. Tente novamente")
+        
     }
 }
 
@@ -92,7 +84,7 @@ export const getProfile = () => async (dispatch) => {
         const response = await axios.get(`${baseUrl}/profile`, 
     { headers: { 'auth': token }, }); 
     dispatch(setUserInfo(response.data.user));
-    console.log(response.data.user) 
+    
     }catch (err) { 
         console.log(err); 
     }};
@@ -124,6 +116,6 @@ export const updateProfile = (name, email, password, cpf) => async (dispatch) =>
         }
         window.alert("Perfil atualizado!")
     } catch (err) {
-        window.alert("ERRO!!!")
+        window.alert("Ocorreu um erro inesperado. Tente novamente")
     }
 }

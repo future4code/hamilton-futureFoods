@@ -57,7 +57,9 @@ class ProductsList extends Component {
                                         </Typography>                                    
                                     </CardContent>
                                 </CardActionArea>
-                                <Button variant="contained" >
+                                <Button variant="contained"
+                                onClick={this.handleOnClicBuyProduct}
+                                >
                                     Adicionar
                                 </Button>      
                             </Card> 

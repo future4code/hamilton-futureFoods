@@ -42,7 +42,7 @@ export const getAllRestaurants = () => async (dispatch) => {
         const response = await axios.get(`${baseUrl}/restaurants`,
         config)
         dispatch(setAllRestaurants(response.data.restaurants))
-        console.log(response.data.restaurants)
+        
     }catch(error){
         console.log(error)
     }
@@ -59,7 +59,7 @@ export const getRestaurantDetails = (restaurantId) => async (dispatch) => {
         const response = await axios.get(`${baseUrl}/restaurants/${restaurantId}`,
         config)
         dispatch(setRestaurantDetails(response.data.restaurant))
-        console.log(response.data.restaurant)
+        
     }catch (error){
         console.log(error)
     }
@@ -69,27 +69,23 @@ export const createNewOrder = (restaurantId, productArray) => async(dispatch) =>
     const token = window.localStorage.getItem("token");
     const config = {
         headers: {
-            'auth':token,
-            
+            'auth':token,            
         }
     }
     try {
         await axios.post(`${baseUrl}/restaurants/${restaurantId}/order`,
      productArray , config)
-
-      //dispatch(getActiveOrder())
-     
+      //dispatch(getActiveOrder())    
 
     } catch(error) {
-     console.log("Pedido não criado")
+     alert("Ocorreu um erro inesperado. Tente novamente")
 
  }}
 export const getActiveOrder = () => async (dispatch) => {
     const token = window.localStorage.getItem("token");
     const config = {
         headers: {
-            'auth':token,
-           
+            'auth':token,           
         }
     }
     try {
@@ -104,7 +100,6 @@ export const getOrderHistory = () => async(dispatch) => {
     const token = window.localStorage.getItem("token");
     const config = {
         headers: {
-
             'auth':token,  
         }
     }
@@ -112,8 +107,7 @@ export const getOrderHistory = () => async(dispatch) => {
     try { 
         const response = await axios.get(`${baseUrl}/orders/history`, config)
         dispatch(setOrderHistory(response.data.orders))
-        console.log(response.data.orders)
-
+        
     } catch(error) {
         console.log("Não foi encontrado")
 
