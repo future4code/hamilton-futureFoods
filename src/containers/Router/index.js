@@ -40,7 +40,7 @@ function Router(props) {
         <Route exact path={routes.useredit} component={UserEdit} />
         <Route exact path={routes.splashscreen} component={SplashScreen} />
         <Route exact path={routes.restaurantDetails} component={RestaurantDetails} />
-        <Route exact path={routes.cart} component={Card} />
+        <Route exact path={routes.cart} component={Cart} />
       </Switch>
    </ConnectedRouter>
   );
