@@ -2,9 +2,10 @@ import React, {Component} from "react"
 import { connect } from"react-redux"
 import {bindActionCreators} from "redux";
 import * as todoAction from "../../actions/userPage";
-import { Button, Div, Input} from './styled'
+import { Button, Div, Input} from './styled';
+import BackButton from "../BackButton"
 
-const FormSignUp = [
+const FormUpDateProfile = [
     {
         name:"name",
         type:"text",
@@ -58,16 +59,11 @@ handleOnChangeForm = event => {
     this.setState({form: {...this.state.form, [name]:value}})
 }
 handleOnSubmit = event => {
+    
     event.preventDefault()
     const {form} = this.state
-    const user = this. props
-
-    if(form.cpf !== user.cpf){
-        this.props.updateProfile(form.name, form.email, form.cpf)
-        
-    }else{
-        alert("Usuário já cadastrado!")
-    }
+   
+    this.props.updateProfile(form.name, form.email, form.cpf)
 }
 
 render() {
@@ -75,7 +71,7 @@ render() {
         <Div>
             {/* <BackButton header={"Editar"}/> */}
             <form onSubmit={this.handleOnSubmit}>
-               {FormSignUp.map(info => {
+               {FormUpDateProfile.map(info => {
                    return (
                        <div key={info.name}>
                            <Input
@@ -90,7 +86,7 @@ render() {
                                label={info.label}
                                variant="outlined" 
                                InputLabelProps = {{shrink:true}}
-                                />
+                           />
                        </div>)
                })}
                <Button type="submit">Salvar</Button>
@@ -107,7 +103,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) =>
 bindActionCreators(todoAction,dispatch)
-
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(SignUpPage)
