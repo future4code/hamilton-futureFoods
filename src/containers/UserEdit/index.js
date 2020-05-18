@@ -73,7 +73,7 @@ handleOnSubmit = event => {
 render() {
     return(
         <Div>
-            <BackButton header={"Editar"}/>
+            {/* <BackButton header={"Editar"}/> */}
             <form onSubmit={this.handleOnSubmit}>
                {FormSignUp.map(info => {
                    return (

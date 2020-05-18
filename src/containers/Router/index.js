@@ -10,7 +10,7 @@ import FeedPage from "../Home/Feed";
 import Profile from '../Profile';
 import UserEdit from '../UserEdit';
 import RestaurantDetails from "../RestaurantDetails";
-import Card from "../Card"
+import Cart from "../Cart"
 
 export const routes = {
   root:"/",
@@ -19,22 +19,22 @@ export const routes = {
   myadress:"/myadress",
   myprofile:"/myprofile",
   useredit:"/useredit",
-  restaurantDetails:"/",
-  card: "/card",
+  restaurantDetails:"/restaurantDetails",
+  cart: "/cart",
 };
 
 function Router(props) {
   return (
     <ConnectedRouter history={props.history}>
       <Switch>
-        {/* <Route exact path={routes.root} component={LoginPage} /> 
+        <Route exact path={routes.root} component={LoginPage} /> 
         <Route exact path={routes.signup} component={SignUpPage} /> 
         <Route exact path={routes.feedpage} component={FeedPage} />
         <Route exact path={routes.myadress} component={MyAdress} />
         <Route exact path={routes.myprofile} component={Profile} />
-        <Route exact path={routes.useredit} component={UserEdit} /> */}
+        <Route exact path={routes.useredit} component={UserEdit} /> 
         <Route exact path={routes.restaurantDetails} component={RestaurantDetails} />
-        <Route exact path={routes.cart} component={Card} />
+        <Route exact path={routes.cart} component={Cart} />
       </Switch>
    </ConnectedRouter>
   );
