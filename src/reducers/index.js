@@ -8,5 +8,5 @@ export const generateReducers = history =>
     router: connectRouter(history),
     user,
     feed,
-    // Outros reducers aqui
+    
   });

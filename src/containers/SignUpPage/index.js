@@ -2,8 +2,8 @@ import React, {Component} from "react"
 import { connect } from"react-redux"
 import {bindActionCreators} from "redux";
 import * as todoAction from "../../actions/userPage";
-import { routes } from "../Router";
-import {Button, Div, Input} from './styled';
+import {Button, Div, Input, Image, Text, DivTitle} from './styled';
+import BackButton from "../BackButton"
 
 const FormSignUp = [
     {
@@ -71,6 +71,13 @@ handleOnChangeForm = event => {
 handleOnSubmit = event => {
     event.preventDefault()
     const {form} = this.state
+    const user = this.props
+    if(form.cpf !== user.cpf){
+        this.props.updateProfile(form.name, form.email, form.cpf)
+         
+    }else{
+        alert("Usuário já cadastrado!")     
+    }
 
     if(form.password !== form.confirmPassword){
         alert("Senhas divergentes. Tente novamente")
@@ -83,10 +90,14 @@ handleOnSubmit = event => {
 render() {
     return(
         <Div>
+            <BackButton showButtonGoBack={true} />
+           
+             <Image src={"https://cdn.zeplin.io/5dd5ab8e5fb2a0060f81698f/assets/2420CEFD-BBDE-49C8-91E3-A49B116851E9.svg"} />
+             <DivTitle>
+                <Text>Cadastrar</Text>
+            </DivTitle>
 
-            {/* <img src={Logo}/> */}
-                
-<form onSubmit={this.handleOnSubmit}>
+            <form onSubmit={this.handleOnSubmit}>
                {FormSignUp.map(info => {
                    return (
                        <div key={info.name}>
@@ -101,7 +112,7 @@ render() {
                                title={info.title}
                                 label={info.label}
                                 variant="outlined" 
-                                InputLabelProps = {{shrink:true}} 
+                                InputLabelProps = {{shrink:true}}
                                 />
                        </div>)
                })}
@@ -112,10 +123,13 @@ render() {
     }       
 }
 
+const mapStateToProps = state => ({
+  
+    user: state.user.userInfo             
+})
 
 const mapDispatchToProps = (dispatch) =>
 bindActionCreators(todoAction,dispatch)
 
 
-
-export default connect(null,mapDispatchToProps)(SignUpPage)
+export default connect(mapStateToProps,mapDispatchToProps)(SignUpPage)

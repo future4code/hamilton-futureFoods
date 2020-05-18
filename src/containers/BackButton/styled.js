@@ -4,6 +4,7 @@ export const WrapperTitle = styled.div `
     height:60px;
     width:360px;
     
+    
 `
 export const WrapperBackButton = styled.div `
 
@@ -17,7 +18,6 @@ export const BackButtonIcon = styled.img `
 `
 export const WrapperHeader = styled.div `
     width: 175px;
-    height: 44px;
     text-align: center;
     margin: 20px 92px 0px 93px;
 

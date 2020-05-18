@@ -25,8 +25,7 @@ componentDidMount = () => {
    const token = window.localStorage.getItem('token')
    
    this.props.getProfile()
-   this.props.getOrderHistory()
-
+   
    if(token === null || !token) {
    this.props.goToLogin()
 
@@ -77,7 +76,6 @@ const mapDispatchToProps = dispatch => ({
     gotToMyAdress:() => dispatch(push(routes.myadress)),
 
     getProfile:() => dispatch(getProfile()),
-    getOrderHistory:() => dispatch(getOrderHistory())
     })
     
 export default connect(mapStateToProps,mapDispatchToProps)(Profile);

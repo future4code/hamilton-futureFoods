@@ -23,10 +23,9 @@ const FormLogin = [
         label:"Senha",
         title:"Digite no mínimo 6 caracteres",
         required:true,
-        pattern:"[A-Za-z0-9]{6,10}"
-            
-
-
+        pattern:"[A-Za-z0-9]{6,10}",
+    
+        
     }
 ]
 
@@ -62,7 +61,7 @@ class LoginPage extends Component {
                     {FormLogin.map(info => {
                         return (
                         <div key={info.name}>
-                        {/* <label htmlFor={info.name}>{info.label}</label> */}
+                        
                             <TextFieldStyled   
                                 name={info.name}
                                 placeholder={info.placeholder}
@@ -81,7 +80,7 @@ class LoginPage extends Component {
                 </form>
                 </WrapperAdress> 
                 <DivTitle>
-                    <Text>Não possui cadastro? Clique aqui.</Text>
+                    <Text>Não possui cadastro? <strong onClick={this.props.redirectSignUp}>Clique aqui.</strong></Text>
                 </DivTitle>
         </Fragment>)
     }       
