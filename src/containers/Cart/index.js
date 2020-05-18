@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch) => ({
     //goToCartPage: () => dispatch(routes.cart),
 });
 
-export default connect()(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
 
 
 

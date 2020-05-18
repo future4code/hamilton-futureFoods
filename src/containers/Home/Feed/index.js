@@ -34,8 +34,6 @@ class FeedPage extends Component {
         });
     };
 
-    
-
 
 
     render() {

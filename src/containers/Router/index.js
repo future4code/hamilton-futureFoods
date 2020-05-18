@@ -11,7 +11,7 @@ import Profile from '../Profile'
 import UserEdit from '../UserEdit'
 import SplashScreen from "../SplashScreen";
 import RestaurantDetails from "../RestaurantDetails";
-import Card from "../Card"
+import Cart from "../Cart"
 
 
 export const routes = {
@@ -22,9 +22,9 @@ export const routes = {
   myadress:"/myadress",
   myprofile:"/myprofile",
   useredit:"/useredit",
-  splashscreen:"/"
+  splashscreen:"/",
   restaurantDetails:"/restaurantDetails",
-  card: "/card",
+  cart: "/cart",
 
 };
 
@@ -41,7 +41,6 @@ function Router(props) {
         <Route exact path={routes.splashscreen} component={SplashScreen} />
         <Route exact path={routes.restaurantDetails} component={RestaurantDetails} />
         <Route exact path={routes.cart} component={Card} />
-
       </Switch>
    </ConnectedRouter>
   );

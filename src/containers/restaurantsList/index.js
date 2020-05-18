@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
-import { getAllRestaurants, getRestaurantsDetails } from "../../actions/feedRestaurants";
+import { getAllRestaurants, getRestaurantDetails } from "../../actions/feedRestaurants";
 
 //MATERIAL-UI CARD
 import Card from '@material-ui/core/Card';
@@ -22,13 +22,12 @@ class RestaurantsList extends Component {
     }
 
 
-    handleOnClickRestaurantsDetails = (restaurantId) => {
-        console.log("Foi clicado o card")
-
-        //this.props.getRestaurantsDetails(restaurantId);
-        //localStorage.setItem('RestaurantId ', restaurantId)
-        //this.props.goToRestaurantsDetailsPage();
+    handleOnClickRestaurantDetails = (restaurantId) => {
+        localStorage.setItem('restaurantId ', restaurantId)
+        this.props.getRestaurantDetails(restaurantId)
+        this.props.goToRestaurantDetailsPage(restaurantId)
     }
+
 
     render() {
         const { allRestaurants } = this.props
@@ -40,7 +39,7 @@ class RestaurantsList extends Component {
                     
                     <Card 
                     key={restaurant.id}
-                    onClick={this.handleOnClickRestaurantsDetails}
+                    onClick={() => this.handleOnClickRestaurantDetails(restaurant.id)}
                     >
                         <CardActionArea>
                             <CardMedia
@@ -72,12 +71,13 @@ class RestaurantsList extends Component {
 
 const mapStateToProps = (state) => ({
     allRestaurants: state.feed.allRestaurants,
+    restaurantDetails: state.feed.restaurantDetails,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getAllRestaurants: () => dispatch(getAllRestaurants()),
-    //getRestaurantsDetails: (restaurantId) => dispatch(getrestaurantsDetails(restaurantId)),
-    //goToRestaurantDetailsPage: () => dispatch(push(routes.restaurantDetails)), 
+    getRestaurantDetails: (restaurantId) => dispatch(getRestaurantDetails(restaurantId)),
+    goToRestaurantDetailsPage: () => dispatch(push(routes.restaurantDetails)), 
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsList)

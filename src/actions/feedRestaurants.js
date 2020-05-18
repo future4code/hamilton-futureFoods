@@ -10,10 +10,10 @@ export const setAllRestaurants = (allRestaurants) => ({
         allRestaurants,
     }
 })
-export const setRestaurantsDetails = (restaurantsDetails) => ({
-    type: 'SET_RESTAURANTS_DETAILS',
+export const setRestaurantDetails = (restaurantDetails) => ({
+    type: 'SET_RESTAURANT_DETAILS',
     payload: {
-        restaurantsDetails,
+        restaurantDetails,
     }
 })
 export const setOrders = (order) => ({

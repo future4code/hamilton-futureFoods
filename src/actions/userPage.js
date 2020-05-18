@@ -105,7 +105,9 @@ export const getProfile = () => async (dispatch) => {
     }};
   
     
-export const updateProfile = (name, email, cpf) => async (dispatch) => {
+
+export const updateProfile = (name, email, password, cpf) => async (dispatch) => {
+
     const token = localStorage.getItem("token")
     const body = {
         name,

@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
-import { getAllRestaurants, getRestaurantDetails } from "../../actions/feedRestaurants";
-
+import { getRestaurantDetails } from "../../actions/feedRestaurants";
+import ProductsList from "../ProductsCard";
 //MATERIAL-UI CARD
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -21,17 +21,22 @@ class RestaurantDetails extends Component {
         };
     }
 
+    componentDidMount(){
+        const token = window.localStorage.getItem("token")
+        if (token === null) {
+          this.props.goToLoginPage();
+        }       
+    }
+
+   
 
     handleOnClickRestaurantDetails = (restaurantId) => {
-        console.log("O produto foi clicado")
-
-        this.props.getRestaurantsDetails(restaurantId);
-        //localStorage.setItem('RestaurantId ', restaurantId)
-        //this.props.goToRestaurantsDetailsPage();
+        localStorage.setItem('RestaurantId ', restaurantId)
+        this.props.goToCartPage();
     }
 
     render() {
-        const { restaurantDetails, allRestaurants} = this.props
+        const { restaurantDetails } = this.props
         
         return(
             <Fragment>
@@ -40,37 +45,40 @@ class RestaurantDetails extends Component {
                 </TitleContainer>
 
                     <Card 
-                    key={restaurant.id}
-                    onClick={this.handleOnClickRestaurantsDetails}
+                    key={restaurantDetails.id}                    
                     >
                         <CardActionArea>
                             <CardMedia
                             component="img"
-                            alt="Hamburguer"
                             height="140"
-                            image={allRestaurants.restaurant.logoUrl}
+                            image={restaurantDetails.logoUrl}
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    {allRestaurants.restaurant.name}
+                                    {restaurantDetails.name} 
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {allRestaurants.restaurant.category}
+                                    {restaurantDetails.category} 
                                 </Typography>    
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {allRestaurants.restaurant.deliveryTime} min
+                                    {restaurantDetails.deliveryTime} min 
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    Entrega R${allRestaurants.restaurant.shipping}  
+                                    Entrega R${restaurantDetails.shipping}  
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {allRestaurants.restaurant.address}  
+                                    {restaurantDetails.address}  
                                 </Typography>
                             </CardContent>
                         </CardActionArea>      
                     </Card>
-                 )
-                })}                           
+                    <TitleContainer>
+                        <Title>Principais</Title> 
+                    </TitleContainer>
+                    <Card>
+                        {/* <ProductsList />  */}
+                    </Card> 
+
             </Fragment>            
         )
     }
@@ -78,12 +86,13 @@ class RestaurantDetails extends Component {
 
 const mapStateToProps = (state) => ({
     allRestaurants: state.feed.allRestaurants,
-    restaurantDetails: state.feed.restaurant,
+    restaurantDetails: state.feed.restaurantDetails,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getAllRestaurants: () => dispatch(getAllRestaurants()),
-    getRestaurantsDetails: (restaurantId) => dispatch(getrestaurantsDetails(restaurantId)),
+    goToLoginPage: () => dispatch(push(routes.root)),
+    goToFeedPage: () => dispatch(push(routes.feedPage)),
+    getRestaurantDetails: (restaurantId) => dispatch(getRestaurantDetails(restaurantId)),
     goToRestaurantDetailPage: () => dispatch(push(routes.restaurantDetails)), 
 });
 
@@ -101,7 +110,18 @@ const Title = styled.p`
     letter-spacing: -0.39px;
     color: #000000;
 `
-
+const TitleContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+`
 
 
 

@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
-import { getAllRestaurants, getRestaurantDetails } from "../../actions/feedRestaurants";
+import { getRestaurantDetails } from "../../actions/feedRestaurants";
 
 
 
 
-class RestaurantsList extends Component {
+class ProductsList extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -16,7 +16,7 @@ class RestaurantsList extends Component {
     }
 
 
-    handleOnClicBuyProducts = (productId) => {
+    handleOnClicBuyProduct = (productId) => {
         console.log("Adicionar ao carrinho o produto")
         localStorage.setItem('productId ', productId)
         this.props.goToCartPage();
@@ -26,45 +26,42 @@ class RestaurantsList extends Component {
         const { restaurantDetails } = this.props
         
         return(
-            <Fragment>
-                {restaurantDetails.map(products => {
-                 return(
-                    <div>
+            <div>
+                {restaurantDetails.products.map(product => {
+                    return(
                         <div 
-                        key={products.id}
+                        key={product.id}                        
                         >
                             <div>
-                                <img src={products.photoUrl}/>
+                                <img src={product.photoUrl}/>
                             </div>
                             <div>
-                                <p>{products.name}</p>
-                                <p>{products.description}</p>
-                                <p>{products.price}</p>
+                                <p>{product.name}</p>
+                                <p>{product.description}</p>
+                                <p>{product.price}</p>
                             </div>                            
                             <div>
-                                <button onClick={handleOnClicBuyProducts}>Adicionar</button>
-                            </div>                            
-                        </div>
-                    </div>                                            
-                )})}
-            </Fragment>            
-        )
+                                <button onClick={this.handleOnClicBuyProduct}>Adicionar</button>
+                            </div> 
+                        </div>  
+                    )
+                })}                                     
+            </div>            
+        );
     }
 }
 
-const mapStateToProps = (state) => ({
-    allRestaurants: state.feed.allRestaurants,
+const mapStateToProps = (state) => ({   
     restaurantDetails: state.feed.restaurantDetails,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getAllRestaurants: () => dispatch(getAllRestaurants()),
-    getRestaurantDetails: (restaurantId) => dispatch(getrestaurantDetails(restaurantId)),
-    //goToRestaurantDetailsPage: () => dispatch(push(routes.restaurantDetails)),
-    //goToCartPage: () => dispatch(routes.cart),
+    getRestaurantDetails: (restaurantId) => dispatch(getRestaurantDetails(restaurantId)),
+    goToRestaurantDetailsPage: () => dispatch(push(routes.restaurantDetails)),
+    goToCartPage: () => dispatch(push(routes.cart)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsList)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsList)
 
 
 
